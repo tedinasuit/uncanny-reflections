@@ -19,7 +19,10 @@ const ProjectCard = ({ id, title, category, year, image, index }: ProjectCardPro
       transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
     >
       <Link to={`/project/${id}`} className="group block">
-        <div className="relative aspect-square overflow-hidden bg-card gallery-card">
+        <motion.div 
+          layoutId={`project-${id}`}
+          className="relative aspect-square overflow-hidden bg-card gallery-card"
+        >
           <img
             src={image}
             alt={title}
@@ -42,7 +45,7 @@ const ProjectCard = ({ id, title, category, year, image, index }: ProjectCardPro
           </div>
 
           <div className="absolute inset-0 opacity-0 group-hover:opacity-100 smooth-transition pointer-events-none glow-effect" />
-        </div>
+        </motion.div>
       </Link>
     </motion.div>
   );

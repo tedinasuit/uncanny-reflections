@@ -1,6 +1,7 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, ExternalLink } from "lucide-react";
+import { useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import { projects } from "@/data/projects";
 import { Button } from "@/components/ui/button";
@@ -9,6 +10,10 @@ const ProjectDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const project = projects.find((p) => p.id === id);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, [id]);
 
   if (!project) {
     return (
@@ -28,7 +33,13 @@ const ProjectDetail = () => {
   const nextProject = projects[(currentIndex + 1) % projects.length];
 
   return (
-    <div className="min-h-screen">
+    <motion.div 
+      className="min-h-screen"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+    >
       <Navigation />
 
       <div className="pt-32 pb-20">
@@ -66,13 +77,16 @@ const ProjectDetail = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-16"
           >
-            <div className="aspect-video overflow-hidden bg-card gallery-card">
+            <motion.div 
+              layoutId={`project-${id}`}
+              className="aspect-video overflow-hidden bg-card gallery-card"
+            >
               <img
                 src={project.image}
                 alt={project.title}
                 className="w-full h-full object-cover"
               />
-            </div>
+            </motion.div>
           </motion.div>
 
           <motion.div
@@ -148,7 +162,7 @@ const ProjectDetail = () => {
           </div>
         </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
