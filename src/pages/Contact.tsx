@@ -133,11 +133,6 @@ const Contact = () => {
                 <h3 className="font-medium mb-4">Follow Me</h3>
                 <div className="flex gap-4">
                   <Button variant="outline" size="sm" asChild>
-                    <a href="https://twitter.com/larshoeijmans" target="_blank" rel="noopener noreferrer">
-                      Twitter
-                    </a>
-                  </Button>
-                  <Button variant="outline" size="sm" asChild>
                     <a href="https://www.linkedin.com/in/lars-hoeijmans/" target="_blank" rel="noopener noreferrer">
                       LinkedIn
                     </a>

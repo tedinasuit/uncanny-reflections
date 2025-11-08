@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
-import { Mail, Twitter, Linkedin } from "lucide-react";
+import { Mail, Linkedin } from "lucide-react";
 
 const About = () => {
   return (
@@ -52,12 +52,6 @@ const About = () => {
                 <Button variant="default" size="lg" className="group">
                   <Mail className="mr-2 h-4 w-4" />
                   larshoeijmans@gmail.com
-                </Button>
-                <Button variant="outline" size="lg" asChild>
-                  <a href="https://twitter.com/larshoeijmans" target="_blank" rel="noopener noreferrer">
-                    <Twitter className="mr-2 h-4 w-4" />
-                    Twitter
-                  </a>
                 </Button>
                 <Button variant="outline" size="lg" asChild>
                   <a href="https://www.linkedin.com/in/lars-hoeijmans/" target="_blank" rel="noopener noreferrer">

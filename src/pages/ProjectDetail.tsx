@@ -5,6 +5,8 @@ import { useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import { projects } from "@/data/projects";
 import { Button } from "@/components/ui/button";
+import ProjectArticleLayout from "@/components/article/ProjectArticleLayout";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const ProjectDetail = () => {
   const { id } = useParams();
@@ -31,6 +33,21 @@ const ProjectDetail = () => {
     );
   }
 
+  if (project.blocks && project.blocks.length > 0) {
+    return (
+      <ProjectArticleLayout
+        kicker={`${project.year} · ${project.category}`}
+        title={project.title}
+        subtitle={project.description}
+        coverImage={detailImageSrc}
+        layoutId={`project-${id}`}
+        blocks={project.blocks}
+        role={project.role}
+        technologies={project.technologies}
+      />
+    );
+  }
+
 
   return (
     <motion.div 
@@ -50,7 +67,7 @@ const ProjectDetail = () => {
             transition={{ duration: 0.6 }}
           >
             <Button
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/", { state: { fromProject: true } })}
               variant="ghost"
               className="mb-8 -ml-4"
             >
@@ -119,6 +136,26 @@ const ProjectDetail = () => {
                     </a>
                   </Button>
                 </motion.div>
+              )}
+
+              {project.richSections && project.richSections.length > 0 && (
+                <div className="mt-12">
+                  <h2 className="text-2xl font-display mb-4">Deep Dive</h2>
+                  <Accordion type="single" collapsible className="w-full">
+                    {project.richSections.map((section, idx) => (
+                      <AccordionItem key={idx} value={`item-${idx}`}>
+                        <AccordionTrigger className="text-left text-base">
+                          {section.heading}
+                        </AccordionTrigger>
+                        <AccordionContent>
+                          <p className="text-base leading-relaxed text-muted-foreground">
+                            {section.body}
+                          </p>
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
+                </div>
               )}
             </div>
 

@@ -40,8 +40,8 @@ This is a modern, single-page portfolio website for Lars Hoeijmans, showcasing h
 
 ### Data Layer
 - **projects.ts**: Static data file containing project information
-  - Project interface with fields: id, title, category, year, image, thumbnailImage?, detailImage?, description, fullDescription, technologies, role, projectUrl?
-  - 6 projects including 2 live applications (Blendspace Studio, FlowSpace) and 4 curated examples
+  - Project interface with fields: id, title, category, year, image, thumbnailImage?, detailImage?, description, fullDescription, technologies, role, projectUrl?, richSections?, blocks?
+  - Multiple projects including live applications (Blendspace Studio, FlowSpace) and curated examples
   - Multi-image support: separate thumbnail images for grid view and detail images for project pages
 
 ### Styling System
@@ -97,3 +97,56 @@ The website serves as a professional showcase for Lars Hoeijmans' work in:
 - **Product-Market Fit**: Creating tools that solve real problems for creators and professionals
 
 The design emphasizes minimalism, smooth animations, and thoughtful typography to reflect the creator's focus on building powerful yet accessible digital experiences.
+
+## Knowledge Base (Project Info Markdown)
+- Location: `src/project-info/*.md`
+- Purpose: Internal knowledge base for rich project context (not loaded at runtime). Used as reference to craft concise portfolio copy and longform content.
+- Do not import or render these files on the site. They exist to keep project history, tone, and details consistent and to speed up future edits.
+- Update when major project changes ship (new features, architecture shifts). Skip trivial fixes.
+
+## Hero Video Compatibility (head.mov img tag bypass)
+- File(s): `src/components/Hero.tsx`, assets `head-pink.mov`, `head-pink.webm`
+- Behavior:
+  - Non‑Safari: `<video>` plays the WebM (`head-pink.webm`) with `autoPlay`, `loop`, `muted`, `playsInline` and respects `prefers-reduced-motion`.
+  - Safari: falls back to an `<img src={head-pink.mov}>` to avoid autoplay/friction issues. This is an intentional compatibility/performance shortcut to keep the hero lightweight and consistent on Safari.
+- Detection: simple user‑agent check for Safari.
+- Fallback: a neutral card placeholder appears if playback fails.
+- Note: Keep this behavior unless replacing with a fully tested Safari‑safe autoplay path. The priority is fast page load and reliable visual motion.
+
+## Longform Project Pages (Editorial Layout)
+- Purpose: Selected projects can render as bold, editorial articles instead of the standard compact detail layout.
+- Activation: Add `blocks?: ContentBlock[]` to a project in `src/data/projects.ts`. When `blocks` exist, the detail route switches to the article layout automatically.
+- Types: see `src/types/content.ts`
+  - `heading (2|3)`, `paragraph`, `pullQuote`, `media (image|video)`, `gallery`, `callout`, `statRow`, `divider`
+- Rendering components:
+  - `ProjectArticleLayout` (hero, inline role/tech meta bar, content)
+  - `ArticleHero` (full‑bleed cover, parallax; participates in shared element transition)
+  - `ArticleContentRenderer` (renders `ContentBlock[]`)
+- Transitions:
+  - Shared element transition from grid → hero via Framer Motion `layoutId`: the card and hero share `layoutId=project-${id}` for fluid navigation in both directions.
+- Fallback:
+  - If `blocks` are absent, the classic `ProjectDetail` layout renders.
+  - Optional `richSections` still render as an Accordion on the classic layout for medium‑depth projects.
+
+## Authoring Longform Content (Quick Start)
+1) In `src/data/projects.ts`, add a `blocks` array to the project:
+```ts
+blocks: [
+  { type: "heading", level: 2, text: "What it is" },
+  { type: "paragraph", text: "Short, high-signal description." },
+  { type: "statRow", items: [{ label: "Platform", value: "Web" }, { label: "AI", value: "RAG" }] },
+  { type: "divider" },
+  { type: "heading", level: 2, text: "Why it stands out" },
+  { type: "paragraph", text: "A crisp explanation of differentiation." },
+  { type: "pullQuote", text: "A bold line worth highlighting." }
+]
+```
+2) Title/cover: The article hero uses the project’s `title`, `description` (as subtitle), and `detailImage || image`.
+3) Role/Tech: Displayed in an inline meta bar below the hero (non‑sticky per design).
+
+## Performance Notes
+- Keep the article components small and dependency‑light; no heavy third‑party libs in the renderer.
+- Images in content blocks use standard `<img>` tags; prefer optimized assets and sizes. Add `loading="lazy"` on large, below‑the‑fold media if needed.
+- Shared element transitions are scoped to hero/cover only to prevent layout thrash.
+- Respect `prefers-reduced-motion`; keep motion subtle and purposeful.
+- Framer Motion transitions are tuned for short durations and limited properties to avoid jank.
