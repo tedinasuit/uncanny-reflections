@@ -55,15 +55,15 @@ export const projects: Project[] = [
     projectUrl: "https://flowspace.site"
   },
   {
-    id: "flux-interface",
-    title: "Flux Interface",
-    category: "UI/UX Design",
-    year: "2023",
+    id: "lineup-creator",
+    title: "Lineup Creator",
+    category: "Sports Application",
+    year: "2024",
     image: project1,
-    description: "A fluid design system for next-generation web applications",
-    fullDescription: "Flux Interface reimagines how users interact with complex data systems. Through careful attention to motion, hierarchy, and responsive design, it creates an intuitive experience that feels both powerful and effortless. The system emphasizes clarity while maintaining a sense of depth and sophistication.",
-    technologies: ["React", "TypeScript", "Framer Motion", "Design Systems"],
-    role: "Lead Designer & Developer"
+    description: "A modern football lineup maker that turns tactics into professional-grade graphics and videos for coaches, analysts, and fans",
+    fullDescription: "Lineup Creator is a modern football lineup maker designed for coaches, analysts, content creators, and fans who live and breathe tactics. Built with a focus on visual quality and user experience, it allows users to build and customize football formations through intuitive drag-and-drop interfaces, then export them as professional-grade graphics and videos. The app features customizable kits, pitch styles, backgrounds, and player positioning, with the ability to create lineup variations for different possession states. Unlike other lineup tools, Lineup Creator prioritizes bold visuals, intuitive design, and ad-free experience, ensuring every export looks premium and editorial. The cross-platform application works seamlessly on iOS, Android, and web, featuring smooth gestures, real-time feedback, and a custom rendering pipeline that ensures crisp, scalable exports across all devices and formats.",
+    technologies: ["React", "TypeScript", "Custom Rendering Pipeline", "Cross-Platform Development", "State Management"],
+    role: "Product Design & Frontend Engineering"
   },
   {
     id: "blendspace-studio",

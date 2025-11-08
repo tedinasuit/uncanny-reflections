@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import heroBg from "@/assets/hero-bg.jpg";
-import headVideoMOV from "@/assets/head.mov";
-import headVideoWebM from "@/assets/head.webm";
+import headVideoMOV from "@/assets/head-pink.mov";
+import headVideoWebM from "@/assets/head-pink.webm";
 
 const Hero = () => {
   const [videoError, setVideoError] = useState(false);
@@ -53,23 +53,27 @@ const Hero = () => {
                 className="relative w-full max-w-[250px] sm:max-w-[300px] lg:max-w-[350px]"
               >
                 {!videoError ? (
-                  <video
-                    autoPlay={!prefersReducedMotion}
-                    loop={!prefersReducedMotion}
-                    muted
-                    playsInline
-                    onError={() => setVideoError(true)}
-                    className="w-full aspect-[3/4] object-cover rounded-lg"
-                    aria-label="Animated portrait of Lars Hoeijmans"
-                    role="img"
-                  >
-                    {isSafari ? (
-                      <source src={headVideoMOV} type="video/quicktime" />
-                    ) : (
+                  isSafari ? (
+                    <img
+                      src={headVideoMOV}
+                      alt="Animated portrait of Lars Hoeijmans"
+                      className="w-full aspect-[3/4] object-cover rounded-lg"
+                    />
+                  ) : (
+                    <video
+                      autoPlay={!prefersReducedMotion}
+                      loop={!prefersReducedMotion}
+                      muted
+                      playsInline
+                      onError={() => setVideoError(true)}
+                      className="w-full aspect-[3/4] object-cover rounded-lg"
+                      aria-label="Animated portrait of Lars Hoeijmans"
+                      role="img"
+                    >
                       <source src={headVideoWebM} type="video/webm" />
-                    )}
-                    Your browser does not support the video tag.
-                  </video>
+                      Your browser does not support the video tag.
+                    </video>
+                  )
                 ) : (
                   // Fallback placeholder if video fails
                   <div className="w-full aspect-[3/4] bg-card rounded-lg flex items-center justify-center">
