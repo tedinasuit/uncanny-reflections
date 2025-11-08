@@ -6,6 +6,12 @@ import project4 from "@/assets/project-4.jpg";
 import project5 from "@/assets/project-5.jpg";
 import project6 from "@/assets/project-6.jpg";
 import project7 from "@/assets/project-7.jpg";
+import blendspace from "@/assets/blendspace.png";
+import blendspaceThumb from "@/assets/blendspace-thumb.png";
+import flowspace from "@/assets/flowspace.png";
+import flowspaceThumb from "@/assets/flowspace-thumb.png";
+import ddwThumb from "@/assets/ddw-thumb.jpeg";
+import ddw from "@/assets/ddw.jpeg";
 
 export interface Project {
   id: string;
@@ -13,34 +19,40 @@ export interface Project {
   category: string;
   year: string;
   image: string;
+  thumbnailImage?: string; // Optional thumbnail for grid (falls back to image)
+  detailImage?: string;    // Optional detail image for project page (falls back to image)
   description: string;
   fullDescription: string;
   technologies: string[];
   role: string;
+  projectUrl?: string;
 }
 
 export const projects: Project[] = [
   {
-    id: "constructed-mirror",
-    title: "Constructed Mirror",
+    id: "ddw",
+    title: "Dutch Design Week 2025",
     category: "Installation",
-    year: "2024",
-    image: projectMirror,
+    year: "2025",
+    image: ddw,
+    thumbnailImage: ddwThumb,
     description: "An AI-powered mirror installation exploring human-machine perception",
-    fullDescription: "Constructed Mirror is an immersive installation that challenges our understanding of identity and perception through the lens of artificial intelligence. The piece uses real-time AI processing to create a dialogue between human reflection and machine interpretation, asking viewers to confront how they are seen—both by themselves and by algorithmic systems.",
+    fullDescription: "Constructed Mirror is an immersive installation that challenges our understanding of identity and perception through the lens of artificial intelligence. The piece uses real-time AI processing to create a dialogue between human reflection and machine interpretation, asking viewers to confront how they are seen, both by themselves and by algorithmic systems.",
     technologies: ["Computer Vision", "Machine Learning", "Real-time Processing", "Interactive Installation"],
     role: "Concept, Design & Development"
   },
   {
-    id: "neural-landscapes",
-    title: "Neural Landscapes",
-    category: "Digital Art",
-    year: "2024",
-    image: project4,
-    description: "Generative artwork exploring the intersection of code and nature",
-    fullDescription: "Neural Landscapes uses generative algorithms to create evolving digital ecosystems. Each piece emerges from simple rules that produce complex, organic patterns—mirroring the way natural systems grow and adapt. The work questions where the boundary lies between artificial and natural creation.",
-    technologies: ["Generative Art", "WebGL", "GLSL Shaders", "Real-time Animation"],
-    role: "Creative Technologist"
+    id: "flowspace",
+    title: "FlowSpace",
+    category: "Productivity Platform",
+    year: "2025",
+    image: flowspace,
+    thumbnailImage: flowspaceThumb,
+    description: "It started as a small tool for my own projects and grew into a hub for managing projects, tasks and also your personal time.",
+    fullDescription: "FlowSpace began as a tiny tool I built to manage my own projects. I still use it every day, and over time it grew into a personal workspace where projects, tasks, notes, and your schedule live together. It runs as a fast PWA with Kanban boards, a helpful AI assistant (Flowie Studio), Google Calendar sync, and a simple set of creative tools for writing, whiteboarding, and managing files. Under the hood it uses RAG to understand your documents, keep track of project context, and turn natural language into tasks. Collaboration is built in with roles and permissions, and data is protected with row-level security. It feels like the power of enterprise tools without the bloat or the price.",
+    technologies: ["React 18", "TypeScript", "Supabase", "Google Gemini AI", "Tailwind CSS", "Framer Motion", "Progressive Web App"],
+    role: "Full-Stack Developer & Product Architect",
+    projectUrl: "https://flowspace.site"
   },
   {
     id: "flux-interface",
@@ -54,15 +66,17 @@ export const projects: Project[] = [
     role: "Lead Designer & Developer"
   },
   {
-    id: "data-streams",
-    title: "Data Streams",
-    category: "Data Visualization",
-    year: "2023",
-    image: project2,
-    description: "Real-time visualization platform for complex data networks",
-    fullDescription: "Data Streams transforms abstract data into compelling visual narratives. The platform processes vast amounts of information in real-time, presenting it through intuitive, interactive visualizations that reveal hidden patterns and relationships. It bridges the gap between raw data and human understanding.",
-    technologies: ["D3.js", "WebGL", "Node.js", "Real-time Data Processing"],
-    role: "Data Visualization Engineer"
+    id: "blendspace-studio",
+    title: "Blendspace Studio",
+    category: "AI Creative Platform",
+    year: "2025",
+    image: blendspace,
+    thumbnailImage: blendspaceThumb,
+    description: "An AI studio for making photorealistic product shots, and even convincing football kit swaps, without a photoshoot.",
+    fullDescription: "Blendspace Studio turns a product URL or image into studio-quality visuals in minutes. You can place products in realistic scenes, adjust backgrounds, add supporting items, and do convincing football kit swaps across major leagues. Paint tools help with precise placement, multi-product layouts make composition easy, and a gallery workflow lets you iterate safely with watermarked previews before downloading final assets. It’s built for speed and security so teams can go from idea to polished marketing images without the time and cost of a shoot.",
+    technologies: ["React", "TypeScript", "AI Integration", "WebGL", "Node.js", "Real-time Processing"],
+    role: "Product, Design, Engineering & Systems Integration",
+    projectUrl: "https://blendspace-studio.vercel.app"
   },
   {
     id: "motion-study",
@@ -71,7 +85,7 @@ export const projects: Project[] = [
     year: "2023",
     image: project3,
     description: "Experimental mobile interface exploring gesture-based interaction",
-    fullDescription: "Motion Study is a research project investigating natural gesture-based interfaces for mobile devices. By studying how people naturally interact with physical objects, we developed a more intuitive way to navigate digital spaces—one that feels less like using a tool and more like having a conversation.",
+    fullDescription: "Motion Study is a research project investigating natural gesture-based interfaces for mobile devices. By studying how people naturally interact with physical objects, we developed a more intuitive way to navigate digital spaces, one that feels less like using a tool and more like having a conversation.",
     technologies: ["React Native", "Gesture Recognition", "Motion Design", "iOS/Android"],
     role: "Interaction Designer"
   },

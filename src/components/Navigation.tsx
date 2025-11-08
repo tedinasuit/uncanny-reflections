@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -6,7 +6,35 @@ import { Button } from "@/components/ui/button";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [nameOpacity, setNameOpacity] = useState(0);
   const location = useLocation();
+
+  useEffect(() => {
+    // Only apply scroll effect on home page
+    if (location.pathname !== "/") {
+      setNameOpacity(1); // Show name fully on other pages
+      return;
+    }
+
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+
+      // Calculate opacity based on scroll position
+      // Name becomes visible as user scrolls past hero section (full viewport height)
+      const scrollProgress = Math.min(scrollY / windowHeight, 1);
+      setNameOpacity(scrollProgress);
+    };
+
+    // Set initial state
+    handleScroll();
+
+    // Add scroll listener
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // Cleanup
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [location.pathname]);
 
   const links = [
     { name: "Work", path: "/" },
@@ -20,9 +48,10 @@ const Navigation = () => {
     <>
       <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-6 mix-blend-difference">
         <div className="max-w-[1800px] mx-auto flex items-center justify-between">
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="text-xl font-display tracking-tight hover:text-primary smooth-transition"
+            style={{ opacity: nameOpacity }}
           >
             LARS HOEIJMANS
           </Link>

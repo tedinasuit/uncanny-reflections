@@ -88,10 +88,10 @@ const Contact = () => {
                     <div>
                       <p className="font-medium">Email</p>
                       <a
-                        href="mailto:hello@larshoeijmans.com"
+                        href="mailto:larshoeijmans@gmail.com"
                         className="text-muted-foreground hover:text-primary smooth-transition"
                       >
-                        hello@larshoeijmans.com
+                        larshoeijmans@gmail.com
                       </a>
                     </div>
                   </div>
@@ -138,7 +138,7 @@ const Contact = () => {
                     </a>
                   </Button>
                   <Button variant="outline" size="sm" asChild>
-                    <a href="https://linkedin.com/in/larshoeijmans" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.linkedin.com/in/lars-hoeijmans/" target="_blank" rel="noopener noreferrer">
                       LinkedIn
                     </a>
                   </Button>

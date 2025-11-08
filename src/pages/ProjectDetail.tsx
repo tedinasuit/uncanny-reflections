@@ -11,6 +11,8 @@ const ProjectDetail = () => {
   const navigate = useNavigate();
   const project = projects.find((p) => p.id === id);
 
+  const detailImageSrc = project?.detailImage || project?.image;
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
   }, [id]);
@@ -29,8 +31,6 @@ const ProjectDetail = () => {
     );
   }
 
-  const currentIndex = projects.findIndex((p) => p.id === id);
-  const nextProject = projects[(currentIndex + 1) % projects.length];
 
   return (
     <motion.div 
@@ -77,14 +77,14 @@ const ProjectDetail = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-16"
           >
-            <motion.div 
+            <motion.div
               layoutId={`project-${id}`}
-              className="aspect-video overflow-hidden bg-card gallery-card"
+              className="aspect-video overflow-hidden gallery-card"
             >
               <img
-                src={project.image}
+                src={detailImageSrc}
                 alt={project.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
               />
             </motion.div>
           </motion.div>
@@ -97,9 +97,29 @@ const ProjectDetail = () => {
           >
             <div className="md:col-span-2">
               <h2 className="text-2xl font-display mb-4">About the Project</h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
+              <p className="text-lg text-muted-foreground leading-relaxed mb-8">
                 {project.fullDescription}
               </p>
+
+              {project.projectUrl && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
+                >
+                  <Button asChild size="lg" className="group">
+                    <a
+                      href={project.projectUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2"
+                    >
+                      Go to {project.title}
+                      <ExternalLink className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </a>
+                  </Button>
+                </motion.div>
+              )}
             </div>
 
             <div>
@@ -129,38 +149,6 @@ const ProjectDetail = () => {
           </motion.div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="max-w-[1800px] mx-auto px-6 mt-32"
-        >
-          <div className="border-t border-border pt-12">
-            <p className="text-sm text-muted-foreground mb-6">Next Project</p>
-            <Link
-              to={`/project/${nextProject.id}`}
-              className="group block relative aspect-[21/9] overflow-hidden bg-card gallery-card"
-            >
-              <img
-                src={nextProject.image}
-                alt={nextProject.title}
-                className="w-full h-full object-cover smooth-transition group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-60 group-hover:opacity-80 smooth-transition" />
-              
-              <div className="absolute inset-0 flex flex-col justify-end p-12">
-                <p className="text-sm text-muted-foreground mb-2">
-                  {nextProject.year} · {nextProject.category}
-                </p>
-                <h3 className="text-4xl md:text-5xl font-display tracking-tight group-hover:text-primary smooth-transition">
-                  {nextProject.title}
-                </h3>
-              </div>
-
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 smooth-transition pointer-events-none glow-effect" />
-            </Link>
-          </div>
-        </motion.div>
       </div>
     </motion.div>
   );

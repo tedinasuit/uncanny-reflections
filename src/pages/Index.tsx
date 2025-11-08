@@ -35,6 +35,7 @@ const Index = () => {
               category={project.category}
               year={project.year}
               image={project.image}
+              thumbnailImage={project.thumbnailImage}
               index={index}
             />
           ))}
@@ -47,13 +48,13 @@ const Index = () => {
             © 2024 Lars Hoeijmans. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <a href="mailto:hello@larshoeijmans.com" className="text-sm hover:text-primary smooth-transition">
+            <a href="mailto:larshoeijmans@gmail.com" className="text-sm hover:text-primary smooth-transition">
               Email
             </a>
             <a href="https://twitter.com/larshoeijmans" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-primary smooth-transition">
               Twitter
             </a>
-            <a href="https://linkedin.com/in/larshoeijmans" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-primary smooth-transition">
+            <a href="https://www.linkedin.com/in/lars-hoeijmans/" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-primary smooth-transition">
               LinkedIn
             </a>
           </div>

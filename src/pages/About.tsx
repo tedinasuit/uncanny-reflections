@@ -21,7 +21,7 @@ const About = () => {
 
             <div className="space-y-8 text-lg text-muted-foreground leading-relaxed">
               <p>
-                I'm Lars Hoeijmans, a digital experience designer and creative technologist based in [Location]. 
+                I'm Lars Hoeijmans, a digital experience designer and creative technologist based in Eindhoven. 
                 My work exists at the intersection of art, technology, and human experience—exploring how we 
                 perceive, interact with, and are shaped by digital systems.
               </p>
@@ -51,7 +51,7 @@ const About = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button variant="default" size="lg" className="group">
                   <Mail className="mr-2 h-4 w-4" />
-                  hello@larshoeijmans.com
+                  larshoeijmans@gmail.com
                 </Button>
                 <Button variant="outline" size="lg" asChild>
                   <a href="https://twitter.com/larshoeijmans" target="_blank" rel="noopener noreferrer">
@@ -60,7 +60,7 @@ const About = () => {
                   </a>
                 </Button>
                 <Button variant="outline" size="lg" asChild>
-                  <a href="https://linkedin.com/in/larshoeijmans" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.linkedin.com/in/lars-hoeijmans/" target="_blank" rel="noopener noreferrer">
                     <Linkedin className="mr-2 h-4 w-4" />
                     LinkedIn
                   </a>

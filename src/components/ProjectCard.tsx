@@ -7,10 +7,12 @@ interface ProjectCardProps {
   category: string;
   year: string;
   image: string;
+  thumbnailImage?: string;
   index: number;
 }
 
-const ProjectCard = ({ id, title, category, year, image, index }: ProjectCardProps) => {
+const ProjectCard = ({ id, title, category, year, image, thumbnailImage, index }: ProjectCardProps) => {
+  const thumbnailSrc = thumbnailImage || image;
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -24,9 +26,9 @@ const ProjectCard = ({ id, title, category, year, image, index }: ProjectCardPro
           className="relative aspect-square overflow-hidden bg-card gallery-card"
         >
           <img
-            src={image}
+            src={thumbnailSrc}
             alt={title}
-            className="w-full h-full object-cover smooth-transition group-hover:scale-105"
+            className="w-full h-full object-contain smooth-transition group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-60 group-hover:opacity-80 smooth-transition" />
           
