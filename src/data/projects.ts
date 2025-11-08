@@ -12,6 +12,12 @@ import flowspace from "@/assets/flowspace.png";
 import flowspaceThumb from "@/assets/flowspace-thumb.png";
 import ddwThumb from "@/assets/ddw-thumb.jpeg";
 import ddw from "@/assets/ddw.jpeg";
+import michiel from "@/assets/michiel.png";
+import michielThumb from "@/assets/michiel-thumb.png";
+import nextnature from "@/assets/nextnature.png";
+import nextnatureThumb from "@/assets/nextnature-thumb.png";
+import lineup from "@/assets/lineup.jpeg";
+import lineupThumb from "@/assets/lineup-thumb.jpg";
 import type { ContentBlock } from "@/types/content";
 
 export interface Project {
@@ -133,11 +139,33 @@ export const projects: Project[] = [
     title: "Lineup Creator",
     category: "Sports Application",
     year: "2024",
-    image: project1,
-    description: "A modern football lineup maker that turns tactics into professional-grade graphics and videos for coaches, analysts, and fans",
-    fullDescription: "Lineup Creator is a modern football lineup maker designed for coaches, analysts, content creators, and fans who live and breathe tactics. Built with a focus on visual quality and user experience, it allows users to build and customize football formations through intuitive drag-and-drop interfaces, then export them as professional-grade graphics and videos. The app features customizable kits, pitch styles, backgrounds, and player positioning, with the ability to create lineup variations for different possession states. Unlike other lineup tools, Lineup Creator prioritizes bold visuals, intuitive design, and ad-free experience, ensuring every export looks premium and editorial. The cross-platform application works seamlessly on iOS, Android, and web, featuring smooth gestures, real-time feedback, and a custom rendering pipeline that ensures crisp, scalable exports across all devices and formats.",
+    image: lineup,
+    thumbnailImage: lineupThumb,
+    description: "A lineup maker that turns tactics into clean, shareable visuals—fast.",
+    fullDescription: "Lineup Creator is for coaches, creators, and fans who want lineup graphics that look editorial, not clunky. You build a shape, place players, personalize kits and backgrounds, and export images or videos that you’re proud to share. It feels simple because the hard parts—rendering quality, performance, and small design details—are built in.",
     technologies: ["React", "TypeScript", "Custom Rendering Pipeline", "Cross-Platform Development", "State Management"],
-    role: "Product Design & Frontend Engineering"
+    role: "Product Design & Frontend Engineering",
+    blocks: [
+      { type: "heading", level: 2, text: "Why I built it" },
+      {
+        type: "paragraph",
+        text: "Most lineup tools produce low‑res, generic graphics or feel clunky to use. I wanted something that respects design and lets you go from idea to a polished visual without fuss."
+      },
+      { type: "heading", level: 2, text: "What it is" },
+      {
+        type: "paragraph",
+        text: "Drag players into position, switch shapes, and customize kits, pitch, and background. Create variations for possession states if you need them. Exports are crisp images or videos that look good on social, in decks, or on print."
+      },
+      {
+        type: "paragraph",
+        text: "The editor is calm and direct: smooth gestures, smart defaults, and a clear flow—edit players, adjust visuals, export. No ads. No noise."
+      },
+      { type: "heading", level: 2, text: "Behind the scenes" },
+      {
+        type: "paragraph",
+        text: "A custom rendering pipeline keeps exports sharp and consistent across devices. Thoughtful state management makes edits feel instant even with complex layouts. It’s built to be dependable so the design quality shows through."
+      }
+    ]
   },
   {
     id: "blendspace-studio",
@@ -183,7 +211,8 @@ export const projects: Project[] = [
     title: "Michiel de Ruyter — Virtual Human",
     category: "Real‑Time AI + 3D",
     year: "2025",
-    image: project3,
+    image: michiel,
+    thumbnailImage: michielThumb,
     description: "A lifelike, Dutch‑speaking virtual Michiel de Ruyter you can converse with—built with MetaHuman, UE5, and real‑time AI.",
     fullDescription: "An interactive historical character inside Unreal Engine 5. Using MetaHuman, tuned physics, and ray‑traced lighting, Michiel de Ruyter lives aboard a historically inspired ship and responds in natural Dutch via OpenAI’s real‑time speech model. The experience balances presence, performance, and safety to make history feel close and conversational.",
     technologies: ["OpenAI Realtime API", "Unreal Engine 5", "MetaHuman", "FluidFlux", "Ray Tracing", "Prompt Engineering"],
@@ -249,94 +278,42 @@ export const projects: Project[] = [
     title: "Next Nature Museum",
     category: "Museum Experience",
     year: "2024",
-    image: project5,
+    image: nextnature,
+    thumbnailImage: nextnatureThumb,
     description: "Award‑winning ‘NextBots’ holographic guide prototype for Next Nature Museum at the Evoluon—built in 4 days with WebXR, Looking Glass, and sensor‑driven interactions.",
     fullDescription: "Next Nature Museum—inside the UFO‑shaped Evoluon (Eindhoven)—explores how technology becomes our ‘next nature’. For International Week (4‑day challenge), I led an international team to design and prototype ‘NextBots’: small, friendly, plant‑adorned robot guides presented as a hologram on a Looking Glass Portrait. We built a WebXR (Three.js) experience, bridged an Arduino proximity sensor via Node.js, and staged a mini‑exhibition. The project won the WOW Group award.",
     technologies: ["Experience Design", "Interaction Design", "WebXR (Three.js)", "Looking Glass Portrait", "Arduino + Node.js", "AI Image (ChatGPT‑4o) & Video (Veo)", "Figma"],
     role: "Team Lead · Concept & Experience Design · WebXR Prototyping",
     blocks: [
-      { type: "heading", level: 2, text: "What is Next Nature Museum?" },
+      { type: "heading", level: 2, text: "Why we built it" },
       {
         type: "paragraph",
-        text: "Based in the Evoluon (Eindhoven), Next Nature Museum is a ‘future lab’ exploring how technology grows into our next nature—the human‑made technosphere with dynamics of its own. Through playful, provocative exhibits, they train ‘crew members for Spaceship Earth’ to think critically about desirable futures."
-      },
-      { type: "divider" },
-      { type: "heading", level: 2, text: "The brief" },
-      {
-        type: "paragraph",
-        text: "Design a visitor experience that helps diverse audiences feel and understand ‘next nature’ within minutes—something engaging, accessible, and memorable for first‑time visitors."
-      },
-      {
-        type: "statRow",
-        items: [
-          { label: "Location", value: "Evoluon, Eindhoven (NL)" },
-          { label: "Context", value: "4‑day international design challenge" },
-          { label: "Partner", value: "Next Nature Museum" },
-          { label: "Outcome", value: "Award‑winning (winner)" }
-        ]
+        text: "Next Nature Museum in the Evoluon (Eindhoven) is a future lab about how technology becomes our next nature. For International Week, they asked for a visitor experience that helps people feel that idea within minutes. In a 4‑day sprint I led an international team (Lithuania, France), aligned fast on roles, and built a working prototype."
       },
       { type: "pullQuote", text: "THE FUTURE REPEATS ITSELF" },
-      { type: "divider" },
-      { type: "heading", level: 2, text: "Team & approach" },
+      { type: "heading", level: 2, text: "What we created" },
       {
         type: "paragraph",
-        text: "International team from Lithuania and France; I was asked to lead while also supporting technical demos. We aligned fast, split responsibilities by strengths, and iterated in the open on a shared Figma board."
-      },
-      { type: "divider" },
-      { type: "heading", level: 2, text: "What we created: NextBots" },
-      {
-        type: "paragraph",
-        text: "Small, friendly robot‑like guides adorned with living plants—a clear nature‑tech fusion inspired by anime‑style nature spirits. A central holographic tree set the scene and tied the concept to the Evoluon."
-      },
-      { type: "heading", level: 3, text: "Visual identity → 3D" },
-      {
-        type: "paragraph",
-        text: "Teammate sketches → AI image refinements (ChatGPT‑4o) → 2D‑to‑3D with Cube CSM → rigging in Mixamo for animation."
-      },
-      { type: "divider" },
-      { type: "heading", level: 2, text: "Holographic display & interactions" },
-      {
-        type: "paragraph",
-        text: "Initial Blender driving the Looking Glass Portrait proved too heavy, so I rebuilt the experience in WebXR (Three.js) and used Looking Glass Bridge with baked animations for smooth playback."
+        text: "“NextBots”: small, friendly robot guides adorned with living plants—an immediate nature‑tech fusion. A central holographic tree tied the scene to the Evoluon. We moved from teammate sketches to AI image refinements (ChatGPT‑4o), then 2D‑to‑3D with Cube CSM and Mixamo for animation."
       },
       {
         type: "paragraph",
-        text: "An ultrasonic sensor on Arduino measured visitor distance; a Node.js bridge relayed readings to the WebXR app. The NextBot waved at ~40 cm and danced at ~10 cm. Gemini AI accelerated Node.js plumbing under time pressure."
+        text: "We presented the NextBot as a glasses‑free hologram on a Looking Glass Portrait. Driving it from Blender was too heavy, so I rebuilt it in WebXR (Three.js) and used Looking Glass Bridge with baked animations for smooth playback."
       },
-      { type: "divider" },
-      { type: "heading", level: 2, text: "Exhibition staging" },
       {
         type: "paragraph",
-        text: "We built a mini‑exhibition booth with plants, spatial sound, and a projector showing the central tree. A short trailer (by teammate Emerson) used Veo AI to add cinematic camera moves over concept frames."
+        text: "To make it responsive, an ultrasonic sensor on Arduino measured visitor distance. A small Node.js bridge relayed data to the WebXR app: the NextBot waved at ~40 cm and danced at ~10 cm. Gemini helped accelerate the Node plumbing under time pressure."
       },
-      { type: "divider" },
-      { type: "heading", level: 2, text: "Results & recognition" },
+      { type: "heading", level: 2, text: "Exhibition & outcome" },
       {
         type: "paragraph",
-        text: "High visitor engagement and clear communication of the nature‑tech fusion. We received the WOW Group award (peer‑voted) and a positive follow‑up from the museum stakeholder (asked for my LinkedIn)."
+        text: "We staged a mini‑exhibition with plants, spatial sound, a projector showing the central tree, and a short trailer (by teammate Emerson) with Veo AI camera moves. The prototype drew consistent engagement and clearly communicated the nature‑tech fusion."
+      },
+      {
+        type: "paragraph",
+        text: "The project won the peer‑voted WOW Group award, and the museum stakeholder followed up afterwards—good signals for both the concept and execution."
       }
     ]
-  },
-  {
-    id: "minimal-commerce",
-    title: "Minimal Commerce",
-    category: "E-commerce",
-    year: "2022",
-    image: project6,
-    description: "Luxury e-commerce platform with focus on editorial experience",
-    fullDescription: "Minimal Commerce reimagines online shopping as a curated editorial experience. By emphasizing storytelling, craftsmanship, and careful curation over endless choice, it creates a more meaningful connection between products and customers. The design language is refined and restrained, letting the products speak for themselves.",
-    technologies: ["Next.js", "Shopify", "Headless CMS", "Custom Animations"],
-    role: "Frontend Lead"
-  },
-  {
-    id: "information-topology",
-    title: "Information Topology",
-    category: "3D Visualization",
-    year: "2022",
-    image: project7,
-    description: "Interactive 3D exploration of knowledge networks and connections",
-    fullDescription: "Information Topology visualizes abstract information structures as explorable 3D landscapes. By representing data relationships spatially, it allows for new patterns of discovery and understanding. Users can navigate through vast knowledge networks with the same intuition they use to explore physical spaces.",
-    technologies: ["Three.js", "WebGL", "Graph Databases", "3D Interaction"],
-    role: "Creative Developer"
   }
 ];
+

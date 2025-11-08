@@ -21,28 +21,23 @@ const About = () => {
 
             <div className="space-y-8 text-lg text-muted-foreground leading-relaxed">
               <p>
-                I'm Lars Hoeijmans, a digital experience designer and creative technologist based in Eindhoven. 
-                My work exists at the intersection of art, technology, and human experience—exploring how we 
-                perceive, interact with, and are shaped by digital systems.
+                I'm Lars Hoeijmans, a 24 year old student from Eindhoven and I make things that live between the physical and digital.
               </p>
 
               <p>
-                I believe that the best digital experiences don't just look good—they feel right. They anticipate 
-                our needs, respond to our gestures, and create moments of delight that stay with us long after 
-                we've closed the browser or put down our phone.
+                I grew up loving two things that seemed different but never were: the natural world and how technology works. One taught me to notice details—light, movement, the way things feel present. The other taught me to take things apart, to understand systems, to make tools do what I needed them to do.
               </p>
 
               <p>
-                My approach combines rigorous technical execution with a deep curiosity about what makes 
-                experiences emotionally resonant. Whether I'm building an AI installation, designing an interface, 
-                or creating a data visualization, I'm always asking: How does this make someone feel? What does 
-                it reveal about the relationship between humans and machines?
+                That combination shapes everything I create. I'm drawn to work that feels human, that creates genuine presence rather than spectacle. I care about the small decisions that make something feel right—the timing, the weight, the moment it clicks.
               </p>
 
               <p>
-                When I'm not working, you can find me experimenting with new tools and technologies, reading 
-                about perception and consciousness, or exploring how art and design shape our understanding of 
-                the world.
+                I like to move fast and stay flexible. I prototype early, test with real people, and keep iterating until it works. I'm comfortable moving between concept, design, and code because I think the best work comes from understanding the whole picture, not just one discipline.
+              </p>
+
+              <p>
+                What drives me is making things that matter. Experiences that help people think or see differently. Technology that respects both craft and the person on the other side. Work that's thoughtful, functional, and maybe a little unexpected.
               </p>
             </div>
 
@@ -62,35 +57,6 @@ const About = () => {
               </div>
             </div>
 
-            <div className="mt-16 pt-16 border-t border-border">
-              <h2 className="text-2xl font-display mb-6">Experience</h2>
-              <div className="space-y-8">
-                <div>
-                  <h3 className="text-xl font-semibold mb-1">Independent Designer & Developer</h3>
-                  <p className="text-sm text-muted-foreground mb-2">2020 - Present</p>
-                  <p className="text-muted-foreground">
-                    Creating digital experiences for clients and personal projects across web, mobile, 
-                    and interactive installations.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-semibold mb-1">Lead Creative Technologist</h3>
-                  <p className="text-sm text-muted-foreground mb-2">[Company Name] · 2018 - 2020</p>
-                  <p className="text-muted-foreground">
-                    Led design and development of award-winning digital experiences for major brands.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-semibold mb-1">UI/UX Designer</h3>
-                  <p className="text-sm text-muted-foreground mb-2">[Company Name] · 2016 - 2018</p>
-                  <p className="text-muted-foreground">
-                    Designed user interfaces and experiences for web and mobile applications.
-                  </p>
-                </div>
-              </div>
-            </div>
           </motion.div>
         </div>
       </div>

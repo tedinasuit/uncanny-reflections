@@ -1,9 +1,7 @@
 import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 
 const Contact = () => {
   return (
@@ -26,126 +24,56 @@ const Contact = () => {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-16">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <form className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2">
-                    Name
-                  </label>
-                  <Input
-                    id="name"
-                    placeholder="Your name"
-                    className="bg-card border-border"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2">
-                    Email
-                  </label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="your.email@example.com"
-                    className="bg-card border-border"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2">
-                    Message
-                  </label>
-                  <Textarea
-                    id="message"
-                    placeholder="Tell me about your project..."
-                    rows={6}
-                    className="bg-card border-border"
-                  />
-                </div>
-
-                <Button type="submit" size="lg" className="w-full">
-                  Send Message
-                </Button>
-              </form>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="space-y-8"
-            >
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="max-w-md mx-auto"
+          >
+            <div className="bg-card/50 backdrop-blur-sm border border-border rounded-2xl p-8 space-y-8">
               <div>
-                <h2 className="text-2xl font-display mb-6">Contact Information</h2>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-4">
-                    <Mail className="h-5 w-5 text-primary mt-1" />
-                    <div>
-                      <p className="font-medium">Email</p>
+                <h2 className="text-2xl font-display mb-6 text-center">Get in touch</h2>
+
+                <div className="space-y-6">
+                  <div className="flex items-center gap-4">
+                    <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                      <Mail className="h-4 w-4 text-primary" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-sm font-medium text-muted-foreground">Email</p>
                       <a
                         href="mailto:larshoeijmans@gmail.com"
-                        className="text-muted-foreground hover:text-primary smooth-transition"
+                        className="text-foreground hover:text-primary smooth-transition break-all"
                       >
                         larshoeijmans@gmail.com
                       </a>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4">
-                    <Phone className="h-5 w-5 text-primary mt-1" />
-                    <div>
-                      <p className="font-medium">Phone</p>
-                      <a
-                        href="tel:+31123456789"
-                        className="text-muted-foreground hover:text-primary smooth-transition"
-                      >
-                        +31 (0) 12 345 6789
-                      </a>
+                  <div className="flex items-center gap-4">
+                    <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                      <MapPin className="h-4 w-4 text-primary" />
                     </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <MapPin className="h-5 w-5 text-primary mt-1" />
-                    <div>
-                      <p className="font-medium">Location</p>
-                      <p className="text-muted-foreground">
-                        Amsterdam, Netherlands
-                      </p>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-sm font-medium text-muted-foreground">Location</p>
+                      <p className="text-foreground">Eindhoven</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="pt-8 border-t border-border">
-                <h3 className="font-medium mb-4">Office Hours</h3>
-                <p className="text-muted-foreground">
-                  Monday - Friday<br />
-                  9:00 AM - 6:00 PM CET
-                </p>
-              </div>
-
-              <div className="pt-8 border-t border-border">
-                <h3 className="font-medium mb-4">Follow Me</h3>
-                <div className="flex gap-4">
+              <div className="pt-6 border-t border-border/50">
+                <p className="text-sm text-muted-foreground text-center mb-4">Find me online</p>
+                <div className="flex justify-center">
                   <Button variant="outline" size="sm" asChild>
                     <a href="https://www.linkedin.com/in/lars-hoeijmans/" target="_blank" rel="noopener noreferrer">
                       LinkedIn
                     </a>
                   </Button>
-                  <Button variant="outline" size="sm" asChild>
-                    <a href="https://github.com/larshoeijmans" target="_blank" rel="noopener noreferrer">
-                      GitHub
-                    </a>
-                  </Button>
                 </div>
               </div>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </div>
