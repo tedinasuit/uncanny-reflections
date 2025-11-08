@@ -21,23 +21,23 @@ const About = () => {
 
             <div className="space-y-8 text-lg text-muted-foreground leading-relaxed">
               <p>
-                I'm Lars Hoeijmans, a 24 year old student from Eindhoven and I make things that live between the physical and digital.
+                I'm Lars Hoeijmans, a 24-year-old creator who grew up with a disposable camera in one hand and a jailbroken iPhone in the other.
+              </p>
+
+                <p>
+                  When I was little, my grandparents took me to aquariums and beaches, teaching me to notice the small things—how light moves through water, how something can feel alive. At the same time, I was the kid flashing custom ROMs on Android phones and figuring out how to make technology do things it wasn't supposed to.
+                </p>
+
+              <p>
+                Those two worlds—nature and computers—never felt separate. They both taught me to look closer, to understand how things work, and to care about the details that make something feel right.
               </p>
 
               <p>
-                I grew up loving two things that seemed different but never were: the natural world and how technology works. One taught me to notice details—light, movement, the way things feel present. The other taught me to take things apart, to understand systems, to make tools do what I needed them to do.
+                Now I build experiences that sit between the physical and digital. I prototype fast, test early, and move between concept, design, and code depending on what the project needs. I'm drawn to work that creates presence, not just spectacle—things that help people think or see differently.
               </p>
 
               <p>
-                That combination shapes everything I create. I'm drawn to work that feels human, that creates genuine presence rather than spectacle. I care about the small decisions that make something feel right—the timing, the weight, the moment it clicks.
-              </p>
-
-              <p>
-                I like to move fast and stay flexible. I prototype early, test with real people, and keep iterating until it works. I'm comfortable moving between concept, design, and code because I think the best work comes from understanding the whole picture, not just one discipline.
-              </p>
-
-              <p>
-                What drives me is making things that matter. Experiences that help people think or see differently. Technology that respects both craft and the person on the other side. Work that's thoughtful, functional, and maybe a little unexpected.
+                I still want to photograph the northern lights and explore wild landscapes. But I also want to keep making things that bridge the tangible and the digital, honoring both worlds I grew up loving.
               </p>
             </div>
 

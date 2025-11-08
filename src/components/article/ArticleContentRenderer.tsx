@@ -1,4 +1,6 @@
 import type { ContentBlock } from "@/types/content";
+import { useState } from "react";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 interface ArticleContentRendererProps {
   blocks: ContentBlock[];
@@ -37,32 +39,204 @@ const PullQuote = ({ text, attribution }: { text: string; attribution?: string }
 );
 
 const MediaFigure = ({
+  mediaType = "image",
   src,
   alt,
   caption,
   fullBleed,
+  posterSrc,
+  aspectRatio,
+  size,
 }: {
+  mediaType?: "image" | "video";
   src: string;
   alt?: string;
   caption?: string;
   fullBleed?: boolean;
-}) => (
-  <figure className={`my-10 ${fullBleed ? "mx-[-6vw]" : ""}`}>
-    <img src={src} alt={alt || ""} className={`w-full ${fullBleed ? "rounded-none" : "rounded-md"} object-contain`} />
-    {caption && <figcaption className="mt-2 text-sm text-muted-foreground">{caption}</figcaption>}
-  </figure>
-);
+  posterSrc?: string;
+  aspectRatio?: number;
+  size?: "sm" | "md" | "lg";
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [overlayVisible, setOverlayVisible] = useState(false);
+  const widthClass =
+    size === "sm"
+      ? "max-w-[240px] md:max-w-[280px]"
+      : size === "md"
+      ? "max-w-[640px]"
+      : "max-w-none";
 
-const GalleryMasonry = ({ items, caption }: { items: { src: string; alt?: string }[]; caption?: string }) => (
-  <figure className="my-10">
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      {items.map((it, idx) => (
-        <img key={idx} src={it.src} alt={it.alt || ""} className="w-full rounded-md object-cover" />
-      ))}
-    </div>
-    {caption && <figcaption className="mt-2 text-sm text-muted-foreground">{caption}</figcaption>}
-  </figure>
-);
+  return (
+    <figure className={`my-10 ${fullBleed ? "mx-[-6vw]" : ""}`}>
+      <div className={widthClass}>
+        {aspectRatio ? (
+          <AspectRatio ratio={aspectRatio}>
+            {mediaType === "video" ? (
+              <button
+                type="button"
+                onClick={() => {
+                  setIsOpen(true);
+                  requestAnimationFrame(() => setOverlayVisible(true));
+                }}
+                className="group block w-full focus:outline-none"
+                aria-label="Expand video"
+              >
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className={`w-full h-full ${fullBleed ? "rounded-none" : "rounded-md"} object-contain`}
+                  aria-label={alt || ""}
+                  role="img"
+                  controls={false}
+                  poster={posterSrc}
+                  onContextMenu={(e) => e.preventDefault()}
+                  draggable={false}
+                >
+                  <source src={src} type="video/mp4" />
+                </video>
+              </button>
+            ) : (
+              <img
+                src={src}
+                alt={alt || ""}
+                className={`w-full h-full ${fullBleed ? "rounded-none" : "rounded-md"} object-contain`}
+              />
+            )}
+          </AspectRatio>
+        ) : (
+          <>
+            {mediaType === "video" ? (
+              <button
+                type="button"
+                onClick={() => {
+                  setIsOpen(true);
+                  requestAnimationFrame(() => setOverlayVisible(true));
+                }}
+                className="group block w-full focus:outline-none"
+                aria-label="Expand video"
+              >
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className={`w-full ${fullBleed ? "rounded-none" : "rounded-md"} object-contain`}
+                  aria-label={alt || ""}
+                  role="img"
+                  controls={false}
+                  poster={posterSrc}
+                  onContextMenu={(e) => e.preventDefault()}
+                  draggable={false}
+                >
+                  <source src={src} type="video/mp4" />
+                </video>
+              </button>
+            ) : (
+              <img
+                src={src}
+                alt={alt || ""}
+                className={`w-full ${fullBleed ? "rounded-none" : "rounded-md"} object-contain`}
+              />
+            )}
+          </>
+        )}
+      </div>
+      {isOpen && (
+        <div
+          className={`fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4 transition-opacity duration-150 ${
+            overlayVisible ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
+          onClick={() => {
+            setOverlayVisible(false);
+            window.setTimeout(() => setIsOpen(false), 150);
+          }}
+        >
+          <div className="relative" onClick={(e) => e.stopPropagation()}>
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="max-h-[85vh] max-w-[90vw] rounded-lg object-contain shadow-2xl"
+              aria-label={alt || ""}
+              role="img"
+              controls={false}
+              poster={posterSrc}
+              onContextMenu={(e) => e.preventDefault()}
+              draggable={false}
+            >
+              <source src={src} type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      )}
+      {caption && <figcaption className="mt-2 text-sm text-muted-foreground">{caption}</figcaption>}
+    </figure>
+  );
+};
+
+const GalleryMasonry = ({
+  items,
+  caption,
+  aspectRatio,
+}: {
+  items: { src: string; alt?: string }[];
+  caption?: string;
+  aspectRatio?: number;
+}) => {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [overlayVisible, setOverlayVisible] = useState(false);
+
+  return (
+    <figure className="my-10">
+      <div className="grid grid-cols-3 gap-3">
+        {items.map((it, idx) => (
+          <button
+            key={idx}
+            type="button"
+            onClick={() => {
+              setActiveIndex(idx);
+              requestAnimationFrame(() => setOverlayVisible(true));
+            }}
+            className="group block w-full focus:outline-none"
+            aria-label="Expand image"
+          >
+            <AspectRatio ratio={aspectRatio || 1}>
+              <img
+                src={it.src}
+                alt={it.alt || ""}
+                className="w-full h-full rounded-md object-cover transition-transform duration-150 group-hover:scale-[1.01]"
+              />
+            </AspectRatio>
+          </button>
+        ))}
+      </div>
+      {caption && <figcaption className="mt-2 text-sm text-muted-foreground">{caption}</figcaption>}
+
+      {activeIndex !== null && (
+        <div
+          className={`fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4 transition-opacity duration-150 ${
+            overlayVisible ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
+          onClick={() => {
+            setOverlayVisible(false);
+            window.setTimeout(() => setActiveIndex(null), 150);
+          }}
+        >
+          <div className="relative" onClick={(e) => e.stopPropagation()}>
+            <img
+              src={items[activeIndex].src}
+              alt={items[activeIndex].alt || ""}
+              className="max-h-[85vh] max-w-[90vw] rounded-lg object-contain shadow-2xl"
+            />
+          </div>
+        </div>
+      )}
+    </figure>
+  );
+};
 
 const Callout = ({ tone, title, body }: { tone: "primary" | "neutral" | "warning"; title?: string; body: string }) => {
   const base = "p-5 rounded-md border";
@@ -104,14 +278,18 @@ const ArticleContentRenderer = ({ blocks }: ArticleContentRendererProps) => {
             return (
               <MediaFigure
                 key={idx}
+                mediaType={block.mediaType}
                 src={block.src}
                 alt={block.alt}
                 caption={block.caption}
                 fullBleed={block.fullBleed}
+                posterSrc={block.posterSrc}
+                aspectRatio={block.aspectRatio}
+                size={block.size}
               />
             );
           case "gallery":
-            return <GalleryMasonry key={idx} items={block.items} caption={block.caption} />;
+            return <GalleryMasonry key={idx} items={block.items} caption={block.caption} aspectRatio={block.aspectRatio} />;
           case "callout":
             return <Callout key={idx} tone={block.tone} title={block.title} body={block.body} />;
           case "statRow":

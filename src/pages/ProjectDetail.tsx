@@ -61,7 +61,7 @@ const ProjectDetail = () => {
       <Navigation />
 
       <div className="pt-32 pb-20">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-5xl mx-auto px-6 lg:pl-28 xl:pl-36">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

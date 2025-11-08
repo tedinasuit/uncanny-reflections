@@ -18,6 +18,10 @@ import nextnature from "@/assets/nextnature.png";
 import nextnatureThumb from "@/assets/nextnature-thumb.png";
 import lineup from "@/assets/lineup.jpeg";
 import lineupThumb from "@/assets/lineup-thumb.jpg";
+import lineupExample1 from "@/assets/lineup-example1.jpeg";
+import lineupExample2 from "@/assets/lineup-example2.jpeg";
+import lineupExample3 from "@/assets/lineup-example3.jpeg";
+import lineupVideo from "@/assets/lineup-video.mp4";
 import type { ContentBlock } from "@/types/content";
 
 export interface Project {
@@ -143,13 +147,23 @@ export const projects: Project[] = [
     thumbnailImage: lineupThumb,
     description: "A lineup maker that turns tactics into clean, shareable visuals—fast.",
     fullDescription: "Lineup Creator is for coaches, creators, and fans who want lineup graphics that look editorial, not clunky. You build a shape, place players, personalize kits and backgrounds, and export images or videos that you’re proud to share. It feels simple because the hard parts—rendering quality, performance, and small design details—are built in.",
-    technologies: ["React", "TypeScript", "Custom Rendering Pipeline", "Cross-Platform Development", "State Management"],
+    technologies: ["React Native", "TypeScript", "Custom Rendering Pipeline", "Cross-Platform Development"],
     role: "Product Design & Frontend Engineering",
     blocks: [
       { type: "heading", level: 2, text: "Why I built it" },
       {
         type: "paragraph",
         text: "Most lineup tools produce low‑res, generic graphics or feel clunky to use. I wanted something that respects design and lets you go from idea to a polished visual without fuss."
+      },
+      {
+        type: "gallery",
+        aspectRatio: 0.75,
+        caption: "Examples of the poster-style output you can create with Lineup Creator.",
+        items: [
+          { src: lineupExample1, alt: "Lineup Creator poster example 1" },
+          { src: lineupExample2, alt: "Lineup Creator poster example 2" },
+          { src: lineupExample3, alt: "Lineup Creator poster example 3" }
+        ]
       },
       { type: "heading", level: 2, text: "What it is" },
       {
@@ -160,10 +174,24 @@ export const projects: Project[] = [
         type: "paragraph",
         text: "The editor is calm and direct: smooth gestures, smart defaults, and a clear flow—edit players, adjust visuals, export. No ads. No noise."
       },
+      {
+        type: "media",
+        mediaType: "video",
+        src: lineupVideo,
+        posterSrc: lineupThumb,
+        alt: "Lineup Creator editor demo",
+        caption: "Example of the video-style output you can create for showcasing tactical changes.",
+        size: "sm"
+      },
       { type: "heading", level: 2, text: "Behind the scenes" },
       {
         type: "paragraph",
-        text: "A custom rendering pipeline keeps exports sharp and consistent across devices. Thoughtful state management makes edits feel instant even with complex layouts. It’s built to be dependable so the design quality shows through."
+        text: "A custom rendering pipeline keeps exports sharp and consistent across devices. Thoughtful state management makes edits feel instant even with complex layouts. It's built to be dependable so the design quality shows through."
+      },
+      { type: "heading", level: 2, text: "Availability" },
+      {
+        type: "paragraph",
+        text: "The app is currently in beta testing as of November 2025 and will be released soon on Android and iOS!"
       }
     ]
   },

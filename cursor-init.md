@@ -144,6 +144,56 @@ blocks: [
 2) Title/cover: The article hero uses the project’s `title`, `description` (as subtitle), and `detailImage || image`.
 3) Role/Tech: Displayed in an inline meta bar below the hero (non‑sticky per design).
 
+## Media & Gallery Foundation (Reusable)
+Blocks for images, videos, and image galleries on project pages.
+
+- Types: `media` and `gallery` in `src/types/content.ts`
+- Renderer: `src/components/article/ArticleContentRenderer.tsx`
+
+### `media` block
+- Supports `image` and `video`
+- Options:
+  - `caption` to describe the media
+  - `fullBleed` to extend to the article edges
+  - `posterSrc` for videos (optional)
+  - `size: "sm" | "md" | "lg"` to clamp width; `"sm"` matches gallery thumbnail scale
+  - `aspectRatio?: number` to wrap in an aspect box; omit to avoid cropping
+- Behavior:
+  - Video autoplays, loops, is muted and `playsInline`, with controls hidden
+  - No heavy morph animations; overlay uses a simple fade
+  - Clicking a video opens a larger overlay (object-contain); click outside to close
+
+Example:
+```ts
+{ type: "media",
+  mediaType: "video",
+  src: someVideoMp4,
+  posterSrc: somePosterJpg,  // optional
+  alt: "Short description",
+  caption: "One-line context for what this shows.",
+  size: "sm"                 // small inline footprint
+  // aspectRatio: 0.75       // set only if you want a fixed frame (3:4)
+}
+```
+
+### `gallery` block
+- 3-column grid of small thumbnails
+- Per-gallery `aspectRatio` (e.g., `0.75` for 3:4 thumbs)
+- Click any image to open a larger overlay (object‑contain); click outside to close
+
+Example:
+```ts
+{ type: "gallery",
+  aspectRatio: 0.75, // 3:4 thumbnails
+  caption: "Examples of the output this tool can create.",
+  items: [
+    { src: img1, alt: "Example 1" },
+    { src: img2, alt: "Example 2" },
+    { src: img3, alt: "Example 3" }
+  ]
+}
+```
+
 ## Performance Notes
 - Keep the article components small and dependency‑light; no heavy third‑party libs in the renderer.
 - Images in content blocks use standard `<img>` tags; prefer optimized assets and sizes. Add `loading="lazy"` on large, below‑the‑fold media if needed.

@@ -20,17 +20,17 @@ const ArticleHero = ({ kicker, title, subtitle, image, layoutId, ctaUrl, ctaLabe
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.85]);
 
   return (
-    <div ref={ref} className="relative">
+    <div ref={ref} className="relative min-h-[56vh] md:min-h-[62vh]">
       {image && (
         <motion.div style={{ y, opacity }} className="absolute inset-0 overflow-hidden" exit={{ opacity: 0 }}>
-          <motion.div layoutId={layoutId}>
-            <img src={image} alt={title} className="w-full h-full object-cover" loading="eager" />
+          <motion.div layoutId={layoutId} className="h-full w-full">
+            <img src={image} alt={title} className="w-full h-full object-cover object-[50%_60%] md:object-center" loading="eager" />
           </motion.div>
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
         </motion.div>
       )}
       <div className={`relative ${image ? "pt-[28vh] pb-[10vh]" : "pt-28 pb-16"}`}>
-        <div className="max-w-[1200px] mx-auto px-6">
+        <div className="max-w-[1200px] mx-auto px-6 lg:pl-28 xl:pl-36">
           <p className="text-sm tracking-wider uppercase text-muted-foreground mb-4">{kicker}</p>
           <h1 className="text-5xl md:text-8xl font-display tracking-tight leading-[0.95] mb-6">
             {title}

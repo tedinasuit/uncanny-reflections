@@ -44,7 +44,7 @@ const ProjectArticleLayout = ({
 
       {(role || (technologies && technologies.length > 0)) && (
         <div className="border-y border-border">
-          <div className="max-w-[1200px] mx-auto px-6 py-4 flex flex-wrap items-center gap-3">
+          <div className="max-w-[1200px] mx-auto px-6 lg:pl-28 xl:pl-36 py-4 flex flex-wrap items-center gap-3">
             {role && <div className="text-sm"><span className="text-muted-foreground mr-2">Role</span>{role}</div>}
             {technologies && technologies.length > 0 && (
               <div className="flex flex-wrap gap-2">
@@ -57,7 +57,7 @@ const ProjectArticleLayout = ({
         </div>
       )}
 
-      <div className="max-w-[1200px] mx-auto px-6">
+      <div className="max-w-[1200px] mx-auto px-6 lg:pl-28 xl:pl-36">
         <div className="max-w-[800px]"><ArticleContentRenderer blocks={blocks} /></div>
       </div>
 
