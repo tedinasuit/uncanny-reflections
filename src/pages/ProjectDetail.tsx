@@ -44,6 +44,7 @@ const ProjectDetail = () => {
         blocks={project.blocks}
         role={project.role}
         technologies={project.technologies}
+        projectUrl={project.projectUrl}
       />
     );
   }

@@ -51,6 +51,7 @@ const Hero = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1.5, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 className="relative w-full max-w-[250px] sm:max-w-[300px] lg:max-w-[350px]"
+                onContextMenu={(e) => e.preventDefault()}
               >
                 {!videoError ? (
                   isSafari ? (
@@ -58,6 +59,7 @@ const Hero = () => {
                       src={headVideoMOV}
                       alt="Animated portrait of Lars Hoeijmans"
                       className="w-full aspect-[3/4] object-cover rounded-lg"
+                      draggable={false}
                     />
                   ) : (
                     <video
@@ -69,6 +71,7 @@ const Hero = () => {
                       className="w-full aspect-[3/4] object-cover rounded-lg"
                       aria-label="Animated portrait of Lars Hoeijmans"
                       role="img"
+                      draggable={false}
                     >
                       <source src={headVideoWebM} type="video/webm" />
                       Your browser does not support the video tag.

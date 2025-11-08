@@ -14,6 +14,7 @@ interface ProjectArticleLayoutProps {
   role?: string;
   technologies?: string[];
   nextCta?: { id: string; title: string };
+  projectUrl?: string;
 }
 
 const ProjectArticleLayout = ({
@@ -26,11 +27,20 @@ const ProjectArticleLayout = ({
   role,
   technologies,
   nextCta,
+  projectUrl,
 }: ProjectArticleLayoutProps) => {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="min-h-screen">
       <Navigation />
-      <ArticleHero kicker={kicker} title={title} subtitle={subtitle} image={coverImage} layoutId={layoutId} />
+      <ArticleHero
+        kicker={kicker}
+        title={title}
+        subtitle={subtitle}
+        image={coverImage}
+        layoutId={layoutId}
+        ctaUrl={projectUrl}
+        ctaLabel={`Go to ${title}`}
+      />
 
       {(role || (technologies && technologies.length > 0)) && (
         <div className="border-y border-border">
