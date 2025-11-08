@@ -44,7 +44,47 @@ export const projects: Project[] = [
     description: "An AI-powered mirror installation exploring human-machine perception",
     fullDescription: "Constructed Mirror is an immersive installation that challenges our understanding of identity and perception through the lens of artificial intelligence. The piece uses real-time AI processing to create a dialogue between human reflection and machine interpretation, asking viewers to confront how they are seen, both by themselves and by algorithmic systems.",
     technologies: ["Computer Vision", "Machine Learning", "Real-time Processing", "Interactive Installation"],
-    role: "Concept, Design & Development"
+    role: "Concept, Design & Development",
+    blocks: [
+      { type: "heading", level: 2, text: "Dutch Design Week" },
+      {
+        type: "paragraph",
+        text: "Dutch Design Week (DDW) is one of the world's leading and Northern Europe's largest design events, held annually for nine days every October in Eindhoven, Netherlands. It focuses on the design of the future and the future of design, emphasizing experimentation, innovation, and the exploration of how design can help shape a positive future and offer solutions to social challenges."
+      },
+      { type: "heading", level: 2, text: "Why I built it" },
+      {
+        type: "paragraph",
+        text: "AI is changing how people feel about their own work and identity. I wanted to make a short, safe encounter that prompts genuine reflection—less explanation, more presence. The project borrows from inoculation theory: a brief, controlled ‘dose’ of discomfort can help people form their own counter‑arguments and build resilience."
+      },
+      {
+        type: "paragraph",
+        text: "A small follow‑up study suggested it works as intended: most participants reported thinking more about human uniqueness (80%) and many felt more confident about their own qualities (60%). It’s a pilot sample (n=5), but it matched the intended effect."
+      },
+      {
+        type: "pullQuote",
+        text: "“What part of you cannot be digitized or replicated?”"
+      },
+      { type: "divider" },
+      { type: "heading", level: 2, text: "The experience" },
+      {
+        type: "paragraph",
+        text: "You step into a small, quiet booth and face what looks like a normal mirror. You speak a few lines for voice sampling. A subtle lag appears. Then the mirror ‘wakes up’ and speaks back in your voice and face, asking a handful of sharp, human questions. It ends without a tidy answer—on purpose—so the thinking continues after you leave."
+      },
+      {
+        type: "paragraph",
+        text: "It’s designed for presence over spectacle: a slow reveal, personal language (Dutch or English), and precise prompts rather than monologues."
+      },
+      { type: "divider" },
+      { type: "heading", level: 2, text: "Behind the scenes" },
+      {
+        type: "paragraph",
+        text: "Unreal Engine 5.6.1 + MetaHuman with NVIDIA Audio2Face drives facial animation; Gemini Live handles dialogue; an optimized zero‑shot voice clone (Chatterbox) keeps responses within ~2–3 seconds; real‑time face‑swap completes the mirror effect."
+      },
+      {
+        type: "paragraph",
+        text: "It runs all day without staff: a simple loop (idle → conversation → reset) with an idle wake, and a dual‑GPU setup to keep it smooth (UE ~30 fps; face‑swap ~16–20 fps). A compact booth at Dutch Design Week used a dual‑screen layout (inside: the reveal; outside: a clean attractor feed) and a Lumix GH5S pipeline for reliable face capture."
+      }
+    ]
   },
   {
     id: "flowspace",
@@ -59,68 +99,32 @@ export const projects: Project[] = [
     role: "Full-Stack Developer & Product Architect",
     projectUrl: "https://flowspace.site",
     blocks: [
-      { type: "heading", level: 2, text: "What it is" },
+      { type: "heading", level: 2, text: "Why I built it" },
       {
         type: "paragraph",
-        text: "A calm, beautifully designed workspace that pulls projects, tasks, calendar, documents, and ideas into one place. It installs as a PWA, works offline, and feels fast everywhere."
-      },
-      {
-        type: "statRow",
-        items: [
-          { label: "Platform", value: "Web · PWA · Offline" },
-          { label: "Calendar", value: "Native + Google Sync" },
-          { label: "Assistant", value: "Context‑aware (RAG)" },
-          { label: "Modes", value: "Kanban · Timeline · Docs · Whiteboard" }
-        ]
-      },
-      { type: "divider" },
-      { type: "heading", level: 2, text: "Why it stands out" },
-      {
-        type: "paragraph",
-        text: "It’s powerful without feeling heavy. One workspace, many modes—no switching apps. The assistant actually helps: create tasks in plain language, summarize projects, and pull facts from your own docs."
-      },
-      { type: "heading", level: 3, text: "Designed for momentum" },
-      {
-        type: "paragraph",
-        text: "Double‑click to edit, drag to reschedule, minimal modals, helpful empty states. Mobile‑first UI with consistent, accessible components and polished motion."
-      },
-      { type: "divider" },
-      { type: "heading", level: 2, text: "Core capabilities" },
-      {
-        type: "paragraph",
-        text: "Customizable Kanban with sections that fit your workflow. A clean timeline to plan by dragging dates. A “Your Day” dashboard that pulls tasks, events, and time blocks into a single, actionable view."
+        text: "I was juggling projects across too many tools. I wanted one quiet place where tasks, schedules, and notes stay together without friction."
       },
       {
         type: "paragraph",
-        text: "Create and link events, overlay Google Calendar, and keep everything in sync. Capture ideas with sticky notes, write in a modern doc editor, and sketch flows on a whiteboard."
-      },
-      { type: "divider" },
-      { type: "heading", level: 2, text: "AI that actually helps" },
-      {
-        type: "paragraph",
-        text: "Ask in plain language to create and edit tasks, summarize projects, and answer questions grounded in your own documents. Retrieval keeps responses relevant; suggestions are practical and safe."
-      },
-      { type: "divider" },
-      { type: "heading", level: 2, text: "Architecture & craft" },
-      {
-        type: "paragraph",
-        text: "React + TypeScript with a clear modular structure. Supabase provides auth, storage, and real‑time sync with row‑level security. Optimistic updates keep interactions snappy and forgiving."
+        text: "FlowSpace is that place: projects, tasks, calendar, and simple docs/whiteboards in one workspace. It installs as a PWA, works offline, and stays fast on phone and desktop."
       },
       {
         type: "paragraph",
-        text: "Built as a Progressive Web App for offline use and installability. Image handling and rendering are tuned for speed on mobile and desktop."
+        text: "The UI is straightforward—edit in place, drag to reschedule, minimal modals. It prefers clarity over cleverness, so it’s easy to keep momentum."
       },
-      { type: "divider" },
-      { type: "heading", level: 2, text: "Impact" },
       {
         type: "paragraph",
-        text: "Fewer tabs and fewer handoffs. A single, cohesive place to plan, create, and execute—especially for people who think visually and work across multiple modes."
+        text: "Calendar sync keeps dates honest. The assistant creates tasks in plain language and summarizes projects using your own documents. It’s practical help, not chat."
+      },
+      {
+        type: "paragraph",
+        text: "I still use it every day. It’s not trying to be everything—just a dependable workspace that cuts down on switching and holds your work together."
       },
       {
         type: "callout",
         tone: "primary",
         title: "Try FlowSpace",
-        body: "It started as a tool for my own projects and grew into a studio for your work."
+        body: "A calm, single workspace to plan and do your work."
       }
     ]
   },
@@ -148,63 +152,29 @@ export const projects: Project[] = [
     role: "Product, Design, Engineering & Systems Integration",
     projectUrl: "https://blendspace-studio.vercel.app",
     blocks: [
+      { type: "heading", level: 2, text: "Why I built it" },
+      {
+        type: "paragraph",
+        text: "Product teams often need clean, on‑brand visuals quickly, but a full photoshoot is slow and expensive. I wanted a simple way to go from a product link or image to believable scenes with real art‑direction control."
+      },
+      {
+        type: "paragraph",
+        text: "Blendspace lets you place products into realistic environments, adjust backgrounds, add supporting items, and export polished assets—without a studio booking. It’s built for speed, but it stays focused on quality."
+      },
       { type: "heading", level: 2, text: "What it is" },
       {
         type: "paragraph",
-        text: "An AI studio that turns product links or images into studio‑quality visuals—without booking a photoshoot. Place products into realistic scenes, customize environments, and export polished assets fast."
-      },
-      {
-        type: "statRow",
-        items: [
-          { label: "Inputs", value: "Product URL · Image Upload" },
-          { label: "Outputs", value: "High‑res Images · Layouts" },
-          { label: "Controls", value: "Paint · Layout · Gallery" },
-          { label: "Use‑cases", value: "E‑com · Social · Ads" }
-        ]
-      },
-      { type: "divider" },
-      { type: "heading", level: 2, text: "Why it stands out" },
-      {
-        type: "paragraph",
-        text: "Blendspace focuses on quality and control. You aren’t just prompting—you’re art directing: adjust backgrounds, add supporting items, and refine placement with paint tools and multi‑product layouts."
-      },
-      { type: "heading", level: 3, text: "Safe iteration" },
-      {
-        type: "paragraph",
-        text: "A gallery workflow lets teams iterate quickly with watermarked previews and only export finals when ready—ideal for review cycles and brand approvals."
-      },
-      { type: "divider" },
-      { type: "heading", level: 2, text: "Core workflow" },
-      {
-        type: "paragraph",
-        text: "Start from a product URL or upload. Compose a scene with photoreal lighting and perspective. Use paint tools for fine placement, then generate a set of candidate shots for review."
+        text: "Start from a product URL or upload. Compose a scene, refine placement with paint tools, and review results in a gallery before exporting finals. It feels like art‑directing, not just prompting."
       },
       {
         type: "paragraph",
-        text: "For football kit swaps, apply league‑specific presets to transfer kits convincingly, then fine‑tune details for seams, folds, and lighting continuity."
-      },
-      { type: "divider" },
-      { type: "heading", level: 2, text: "AI & rendering pipeline" },
-      {
-        type: "paragraph",
-        text: "Frontend in React + TypeScript with WebGL assists for previews and compositing. Server side orchestrates AI image ops and guardrails. Real‑time feedback keeps edits responsive while heavier jobs run off‑thread."
-      },
-      { type: "heading", level: 3, text: "Performance & reliability" },
-      {
-        type: "paragraph",
-        text: "Optimized upload/preview pipeline, responsive images, and smart caching yield fast iteration. Guardrails prevent accidental over‑processing and preserve brand‑critical details."
-      },
-      { type: "divider" },
-      { type: "heading", level: 2, text: "Impact" },
-      {
-        type: "paragraph",
-        text: "Teams move from idea to polished marketing assets in minutes—cutting cost, lead time, and coordination. It brings the polish of a studio into a browser."
+        text: "Teams use it for ecommerce, social, and ads. The benefit is straightforward: fewer hand‑offs, shorter lead times, and consistent results you’re comfortable shipping."
       },
       {
         type: "callout",
         tone: "primary",
         title: "See the studio",
-        body: "From product link to ad‑ready visuals with art‑director controls and safe iteration."
+        body: "From link to export—fast, controllable product visuals."
       }
     ]
   },
@@ -219,72 +189,24 @@ export const projects: Project[] = [
     technologies: ["OpenAI Realtime API", "Unreal Engine 5", "MetaHuman", "FluidFlux", "Ray Tracing", "Prompt Engineering"],
     role: "Technical Direction, Character & Rendering",
     blocks: [
-      { type: "heading", level: 2, text: "What it is" },
+      { type: "heading", level: 2, text: "Why I built it" },
       {
         type: "paragraph",
-        text: "A real‑time, Dutch‑speaking virtual human of Michiel de Ruyter aboard a storm‑tossed ship in Unreal Engine 5. Speak to him naturally; he responds with a dignified, historically grounded persona—instantly."
+        text: "I wanted to see if a historical figure could feel present—not like a chatbot—with real‑time speech and a respectful Dutch persona. The goal was a quiet sense of being there with him, not a gimmick."
       },
-      {
-        type: "statRow",
-        items: [
-          { label: "Voice", value: "OpenAI Echo (Dutch)" },
-          { label: "Engine", value: "UE5 + MetaHuman" },
-          { label: "Water", value: "FluidFlux" },
-          { label: "Rendering", value: "Real‑time Ray Tracing" }
-        ]
-      },
-      { type: "divider" },
-      { type: "heading", level: 2, text: "Challenge" },
+      { type: "heading", level: 2, text: "The experience" },
       {
         type: "paragraph",
-        text: "Make a historical figure feel present—not like a chatbot—while preserving low latency, visual fidelity, and safety in a dark, stormy scene."
+        text: "You meet Michiel de Ruyter aboard a stormy ship. You speak naturally; he responds instantly in Dutch with a dignified tone. Lighting, motion, and pacing are tuned to keep eye contact and presence without breaking the scene."
       },
-      { type: "heading", level: 2, text: "Solution" },
       {
         type: "paragraph",
-        text: "A Dutch‑only persona with explicit guardrails, a MetaHuman character sculpted to match portraiture, tuned ship physics with custom deck collisions, and denoiser‑aware lighting that keeps his face readable without breaking the ambience."
+        text: "      Spinoff: De Vliegende Hollander—built on the same pipeline for De Efteling, who wanted to experiment with AI in‑park. A mythic variant with fiery sails, charred hull, spectral mist, and a tailored persona delivered the same real‑time, respectful interaction."
       },
-      {
-        type: "pullQuote",
-        text: "“Wat is uw bevel, edele landgenoot? De zee roept ons tot actie!”"
-      },
-      { type: "divider" },
-      { type: "heading", level: 2, text: "AI & Interaction" },
+      { type: "heading", level: 2, text: "Behind the scenes" },
       {
         type: "paragraph",
-        text: "Powered by gpt‑4o‑realtime‑preview‑2024‑12‑17 for low‑latency speech in/out. Persona enforces a respectful, stoic tone; no vulgarity or AI self‑disclosure. Interruption handling reduces speech overlap for natural turn‑taking."
-      },
-      { type: "heading", level: 2, text: "Environment & Physics" },
-      {
-        type: "paragraph",
-        text: "FluidFlux drives the ocean. The VOC‑era ship received extensive material polish. Physics are tuned for believable buoyancy while keeping traversal stable via a hand‑built deck collision and invisible rails."
-      },
-      { type: "heading", level: 2, text: "Lighting & Rendering" },
-      {
-        type: "paragraph",
-        text: "Lantern‑style key/fill maintains eye contact in low light. We preserve enough rays for clean denoising and use post‑process volumes to control darkness, rather than starving the denoiser."
-      },
-      { type: "heading", level: 2, text: "User Testing & Safety" },
-      {
-        type: "paragraph",
-        text: "Early tests surfaced timing overlap and one offensive outburst during a stress interruption. We hardened guardrails to block vulgarity entirely and improved barge‑in handling to keep the rhythm conversational."
-      },
-      { type: "heading", level: 2, text: "Impact" },
-      {
-        type: "paragraph",
-        text: "Proved that real‑time AI + 3D can turn static history into a respectful, conversational presence—compelling for museums, exhibits, and live events."
-      },
-      { type: "divider" },
-      { type: "heading", level: 2, text: "Spinoff: De Vliegende Hollander", anchor: "vliegende-hollander" },
-      {
-        type: "paragraph",
-        text: "Using the same pipeline, we created a mythic variant: Willem van der Decken, captain of De Vliegende Hollander—fiery sails, charred hull, spectral mist, and a dramatic persona aligned with Efteling’s canon."
-      },
-      {
-        type: "callout",
-        tone: "primary",
-        title: "Want more?",
-        body: "Explore the ghost‑ship spinoff built on this foundation. It’s bold, theatrical, and unforgettable."
+        text: "Unreal Engine 5 + MetaHuman handle character and environment; the voice runs on a low‑latency real‑time model; safety and guardrails shape tone and content; and rendering is tuned for clarity in low light. The pipeline balances performance and polish so the illusion holds."
       }
     ],
     richSections: [
@@ -323,15 +245,77 @@ export const projects: Project[] = [
     ]
   },
   {
-    id: "augmented-spaces",
-    title: "Augmented Spaces",
-    category: "AR Experience",
-    year: "2022",
+    id: "next-nature-museum",
+    title: "Next Nature Museum",
+    category: "Museum Experience",
+    year: "2024",
     image: project5,
-    description: "Mixed reality platform blending digital and physical environments",
-    fullDescription: "Augmented Spaces explores the potential of mixed reality to transform our relationship with physical space. By layering digital information onto the real world, the project creates new possibilities for how we work, learn, and interact with our environments.",
-    technologies: ["ARKit", "Unity", "Computer Vision", "Spatial Computing"],
-    role: "AR Developer & Experience Designer"
+    description: "Award‑winning ‘NextBots’ holographic guide prototype for Next Nature Museum at the Evoluon—built in 4 days with WebXR, Looking Glass, and sensor‑driven interactions.",
+    fullDescription: "Next Nature Museum—inside the UFO‑shaped Evoluon (Eindhoven)—explores how technology becomes our ‘next nature’. For International Week (4‑day challenge), I led an international team to design and prototype ‘NextBots’: small, friendly, plant‑adorned robot guides presented as a hologram on a Looking Glass Portrait. We built a WebXR (Three.js) experience, bridged an Arduino proximity sensor via Node.js, and staged a mini‑exhibition. The project won the WOW Group award.",
+    technologies: ["Experience Design", "Interaction Design", "WebXR (Three.js)", "Looking Glass Portrait", "Arduino + Node.js", "AI Image (ChatGPT‑4o) & Video (Veo)", "Figma"],
+    role: "Team Lead · Concept & Experience Design · WebXR Prototyping",
+    blocks: [
+      { type: "heading", level: 2, text: "What is Next Nature Museum?" },
+      {
+        type: "paragraph",
+        text: "Based in the Evoluon (Eindhoven), Next Nature Museum is a ‘future lab’ exploring how technology grows into our next nature—the human‑made technosphere with dynamics of its own. Through playful, provocative exhibits, they train ‘crew members for Spaceship Earth’ to think critically about desirable futures."
+      },
+      { type: "divider" },
+      { type: "heading", level: 2, text: "The brief" },
+      {
+        type: "paragraph",
+        text: "Design a visitor experience that helps diverse audiences feel and understand ‘next nature’ within minutes—something engaging, accessible, and memorable for first‑time visitors."
+      },
+      {
+        type: "statRow",
+        items: [
+          { label: "Location", value: "Evoluon, Eindhoven (NL)" },
+          { label: "Context", value: "4‑day international design challenge" },
+          { label: "Partner", value: "Next Nature Museum" },
+          { label: "Outcome", value: "Award‑winning (winner)" }
+        ]
+      },
+      { type: "pullQuote", text: "THE FUTURE REPEATS ITSELF" },
+      { type: "divider" },
+      { type: "heading", level: 2, text: "Team & approach" },
+      {
+        type: "paragraph",
+        text: "International team from Lithuania and France; I was asked to lead while also supporting technical demos. We aligned fast, split responsibilities by strengths, and iterated in the open on a shared Figma board."
+      },
+      { type: "divider" },
+      { type: "heading", level: 2, text: "What we created: NextBots" },
+      {
+        type: "paragraph",
+        text: "Small, friendly robot‑like guides adorned with living plants—a clear nature‑tech fusion inspired by anime‑style nature spirits. A central holographic tree set the scene and tied the concept to the Evoluon."
+      },
+      { type: "heading", level: 3, text: "Visual identity → 3D" },
+      {
+        type: "paragraph",
+        text: "Teammate sketches → AI image refinements (ChatGPT‑4o) → 2D‑to‑3D with Cube CSM → rigging in Mixamo for animation."
+      },
+      { type: "divider" },
+      { type: "heading", level: 2, text: "Holographic display & interactions" },
+      {
+        type: "paragraph",
+        text: "Initial Blender driving the Looking Glass Portrait proved too heavy, so I rebuilt the experience in WebXR (Three.js) and used Looking Glass Bridge with baked animations for smooth playback."
+      },
+      {
+        type: "paragraph",
+        text: "An ultrasonic sensor on Arduino measured visitor distance; a Node.js bridge relayed readings to the WebXR app. The NextBot waved at ~40 cm and danced at ~10 cm. Gemini AI accelerated Node.js plumbing under time pressure."
+      },
+      { type: "divider" },
+      { type: "heading", level: 2, text: "Exhibition staging" },
+      {
+        type: "paragraph",
+        text: "We built a mini‑exhibition booth with plants, spatial sound, and a projector showing the central tree. A short trailer (by teammate Emerson) used Veo AI to add cinematic camera moves over concept frames."
+      },
+      { type: "divider" },
+      { type: "heading", level: 2, text: "Results & recognition" },
+      {
+        type: "paragraph",
+        text: "High visitor engagement and clear communication of the nature‑tech fusion. We received the WOW Group award (peer‑voted) and a positive follow‑up from the museum stakeholder (asked for my LinkedIn)."
+      }
+    ]
   },
   {
     id: "minimal-commerce",

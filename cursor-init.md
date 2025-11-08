@@ -150,3 +150,37 @@ blocks: [
 - Shared element transitions are scoped to hero/cover only to prevent layout thrash.
 - Respect `prefers-reduced-motion`; keep motion subtle and purposeful.
 - Framer Motion transitions are tuned for short durations and limited properties to avoid jank.
+
+## Organic/Human Writing Guidelines (Editorial Voice)
+Use this style for all project pages and longform content. The goal is calm, clear, human writing that explains what it is and why it exists—without hype.
+
+- Tone & intent
+  - Prefer calm, plain language over marketing speak.
+  - Explain what it is, why it exists, and what’s special; avoid buzzwords and superlatives.
+  - Use concrete details and outcomes over vague claims.
+- Structure
+  - 2–3 section headers total per project page (typical: “Why I built it”, “The experience”, “Behind the scenes”).
+  - Favor short paragraphs over long bullet lists. Avoid nested lists unless truly needed.
+  - At most one pull quote; use sparingly and only if it adds meaning.
+- Content selection (portfolio-first)
+  - Keep school-style sections (MoSCoW, exhaustive requirements/specs) out of public pages.
+  - Include only what helps a visitor quickly understand the work and its impact.
+  - If research exists, summarize only the high-signal takeaways (e.g., key percentages, small sample caveat).
+- Technical depth
+  - Keep tech sections concise: name the system and a few key choices; avoid implementation dumps.
+  - Mention reliability/performance only when it explains a visible choice (e.g., dual‑GPU to stay smooth all day).
+- Local context
+  - Dutch Design Week pages should include a brief DDW context line explaining what DDW is.
+  - Client/stakeholder context is fine if it clarifies constraints or outcomes (e.g., award, follow‑up, deployment).
+- Language & clarity
+  - No adjective stacking; remove filler (innovative, seamless, cutting‑edge) unless substantiated.
+  - Prefer verbs over nouns; describe what the user does or experiences.
+  - Keep sentences tight (generally ≤2 clauses); break long thoughts into two sentences.
+- Blocks authoring (in `projects.ts`)
+  - Use a small number of `heading` and `paragraph` blocks; minimize `statRow` and `divider`.
+  - Reserve `callout` for a single next action (e.g., “Try FlowSpace”, “See the studio”).
+  - Media is optional; when used, keep captions informative and short.
+- Criteria for rewrites
+  - If a page reads like a feature list or ad, refactor into 2–3 sections with narrative paragraphs.
+  - Remove noisy headers and convert lists into prose where possible.
+  - Keep one memorable line/quote if it genuinely helps the reader remember the point.
