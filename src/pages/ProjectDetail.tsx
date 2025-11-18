@@ -7,6 +7,7 @@ import { projects } from "@/data/projects";
 import { Button } from "@/components/ui/button";
 import ProjectArticleLayout from "@/components/article/ProjectArticleLayout";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { TRANSITION_EASE, STAGGER_DELAY } from "@/lib/utils";
 
 const ProjectDetail = () => {
   const { id } = useParams();
@@ -51,13 +52,7 @@ const ProjectDetail = () => {
 
 
   return (
-    <motion.div 
-      className="min-h-screen"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
-    >
+    <div className="min-h-screen bg-background">
       <Navigation />
 
       <div className="pt-32 pb-20">
@@ -65,7 +60,7 @@ const ProjectDetail = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.6, ease: TRANSITION_EASE as any }}
           >
             <Button
               onClick={() => navigate("/", { state: { fromProject: true } })}
@@ -77,40 +72,51 @@ const ProjectDetail = () => {
             </Button>
 
             <div className="mb-12">
-              <p className="text-sm text-muted-foreground mb-4">
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1, ease: TRANSITION_EASE as any }}
+                className="text-sm text-muted-foreground mb-4"
+              >
                 {project.year} · {project.category}
-              </p>
-              <h1 className="text-5xl md:text-7xl font-display tracking-tight mb-6">
+              </motion.p>
+              <motion.h1
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.15, ease: TRANSITION_EASE as any }}
+                className="text-5xl md:text-7xl font-display tracking-tight mb-6"
+              >
                 {project.title}
-              </h1>
-              <p className="text-xl text-muted-foreground">
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2, ease: TRANSITION_EASE as any }}
+                className="text-xl text-muted-foreground"
+              >
                 {project.description}
-              </p>
+              </motion.p>
             </div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-16"
-          >
+          <div className="mb-16">
             <motion.div
               layoutId={`project-${id}`}
-              className="aspect-video overflow-hidden gallery-card"
+              className="aspect-video overflow-hidden gallery-card rounded-2xl"
+              transition={{ duration: 0.8, ease: TRANSITION_EASE as any }}
             >
               <img
                 src={detailImageSrc}
                 alt={project.title}
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain bg-black/5"
               />
             </motion.div>
-          </motion.div>
+          </div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: TRANSITION_EASE as any }}
             className="grid md:grid-cols-3 gap-12 mb-16"
           >
             <div className="md:col-span-2">
@@ -123,7 +129,7 @@ const ProjectDetail = () => {
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 }}
+                  transition={{ delay: 0.6, ease: TRANSITION_EASE as any }}
                 >
                   <Button asChild size="lg" className="group">
                     <a
@@ -188,7 +194,7 @@ const ProjectDetail = () => {
         </div>
 
       </div>
-    </motion.div>
+    </div>
   );
 };
 

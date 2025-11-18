@@ -3,6 +3,7 @@ import ArticleHero from "@/components/article/ArticleHero";
 import ArticleContentRenderer from "@/components/article/ArticleContentRenderer";
 import type { ContentBlock } from "@/types/content";
 import { motion } from "framer-motion";
+import { TRANSITION_EASE } from "@/lib/utils";
 
 interface ProjectArticleLayoutProps {
   kicker: string;
@@ -30,7 +31,7 @@ const ProjectArticleLayout = ({
   projectUrl,
 }: ProjectArticleLayoutProps) => {
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Navigation />
       <ArticleHero
         kicker={kicker}
@@ -42,44 +43,50 @@ const ProjectArticleLayout = ({
         ctaLabel={`Go to ${title}`}
       />
 
-      {(role || (technologies && technologies.length > 0)) && (
-        <div className="border-y border-border">
-          <div className="max-w-[1200px] mx-auto px-6 lg:pl-28 xl:pl-36 py-4 flex flex-wrap items-center gap-3">
-            {role && <div className="text-sm"><span className="text-muted-foreground mr-2">Role</span>{role}</div>}
-            {technologies && technologies.length > 0 && (
-              <div className="flex flex-wrap gap-2">
-                {technologies.map((t) => (
-                  <span key={t} className="px-3 py-1 bg-card text-sm border border-border">{t}</span>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-
-      <div className="max-w-[1200px] mx-auto px-6 lg:pl-28 xl:pl-36">
-        <div className="max-w-[800px]"><ArticleContentRenderer blocks={blocks} /></div>
-      </div>
-
-      {nextCta && (
-        <div className="mt-20 mb-24 px-6">
-          <div className="max-w-[1200px] mx-auto">
-            <a
-              href={`/project/${nextCta.id}`}
-              className="block group relative overflow-hidden border border-border bg-card"
-            >
-              <div className="p-8 md:p-12">
-                <div className="text-sm text-muted-foreground mb-2">Next Project</div>
-                <div className="text-3xl md:text-5xl font-display tracking-tight group-hover:text-primary transition-colors">
-                  {nextCta.title}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2, ease: TRANSITION_EASE as any }}
+      >
+        {(role || (technologies && technologies.length > 0)) && (
+          <div className="border-y border-border">
+            <div className="max-w-[1200px] mx-auto px-6 lg:pl-28 xl:pl-36 py-4 flex flex-wrap items-center gap-3">
+              {role && <div className="text-sm"><span className="text-muted-foreground mr-2">Role</span>{role}</div>}
+              {technologies && technologies.length > 0 && (
+                <div className="flex flex-wrap gap-2">
+                  {technologies.map((t) => (
+                    <span key={t} className="px-3 py-1 bg-card text-sm border border-border">{t}</span>
+                  ))}
                 </div>
-              </div>
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 smooth-transition pointer-events-none glow-effect" />
-            </a>
+              )}
+            </div>
           </div>
+        )}
+
+        <div className="max-w-[1200px] mx-auto px-6 lg:pl-28 xl:pl-36">
+          <div className="max-w-[800px]"><ArticleContentRenderer blocks={blocks} /></div>
         </div>
-      )}
-    </motion.div>
+
+        {nextCta && (
+          <div className="mt-20 mb-24 px-6">
+            <div className="max-w-[1200px] mx-auto">
+              <a
+                href={`/project/${nextCta.id}`}
+                className="block group relative overflow-hidden border border-border bg-card"
+              >
+                <div className="p-8 md:p-12">
+                  <div className="text-sm text-muted-foreground mb-2">Next Project</div>
+                  <div className="text-3xl md:text-5xl font-display tracking-tight group-hover:text-primary transition-colors">
+                    {nextCta.title}
+                  </div>
+                </div>
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 smooth-transition pointer-events-none glow-effect" />
+              </a>
+            </div>
+          </div>
+        )}
+      </motion.div>
+    </div>
   );
 };
 

@@ -1,20 +1,55 @@
-import { motion } from "framer-motion";
+import { motion, useIsPresent } from "framer-motion";
 import { useLocation, useNavigationType } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import ProjectCard from "@/components/ProjectCard";
 import { projects } from "@/data/projects";
+import { TRANSITION_EASE } from "@/lib/utils";
+import { useEffect, useRef } from "react";
 
 const Index = () => {
   const location = useLocation();
   const navigationType = useNavigationType();
   const returningFromProject = Boolean((location.state as any)?.fromProject) || navigationType === "POP";
+  const scrollY = useRef(0);
+  const isPresent = useIsPresent();
+
+  // Capture scroll position
+  useEffect(() => {
+    if (!isPresent) return;
+
+    const handleScroll = () => {
+      scrollY.current = window.scrollY;
+    };
+
+    // Capture initial
+    scrollY.current = window.scrollY;
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isPresent]);
 
   return (
-    <div className="min-h-screen">
+    <motion.div
+      className="min-h-screen"
+      exit={{ opacity: 0, scale: 0.98, filter: "blur(10px)" }}
+      transition={{ duration: 0.5, ease: TRANSITION_EASE as any }}
+      style={
+        !isPresent
+          ? {
+            position: "fixed",
+            top: -scrollY.current,
+            left: 0,
+            right: 0,
+            width: "100%",
+            zIndex: 0, // Ensure it stays behind the new page
+          }
+          : undefined
+      }
+    >
       <Navigation />
       <Hero />
-      
+
       <section className="max-w-[1800px] mx-auto px-6 py-20">
         {returningFromProject ? (
           <div className="mb-16 text-center">
@@ -30,7 +65,7 @@ const Index = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8, ease: TRANSITION_EASE as any }}
             className="mb-16 text-center"
           >
             <h2 className="text-5xl md:text-7xl font-display tracking-tight mb-4">
@@ -56,12 +91,12 @@ const Index = () => {
               disableSharedTransition={returningFromProject}
               projectType={
                 project.id === 'flowspace' ? 'productivity' :
-                project.id === 'blendspace-studio' ? 'ai-creative' :
-                project.id === 'michiel-de-ruyter' ? 'ai-3d' :
-                project.id === 'lineup-creator' ? 'sports-app' :
-                project.id === 'next-nature-museum' ? 'museum' :
-                project.id === 'ddw' ? 'installation' :
-                'productivity'
+                  project.id === 'blendspace-studio' ? 'ai-creative' :
+                    project.id === 'michiel-de-ruyter' ? 'ai-3d' :
+                      project.id === 'lineup-creator' ? 'sports-app' :
+                        project.id === 'next-nature-museum' ? 'museum' :
+                          project.id === 'ddw' ? 'installation' :
+                            'productivity'
               }
             />
           ))}
@@ -83,7 +118,7 @@ const Index = () => {
           </div>
         </div>
       </footer>
-    </div>
+    </motion.div>
   );
 };
 

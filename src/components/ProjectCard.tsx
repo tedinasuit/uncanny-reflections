@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { TRANSITION_EASE } from "@/lib/utils";
 
 interface ProjectCardProps {
   id: string;
@@ -78,49 +79,58 @@ const ProjectCard = ({
 
   // Staggered animation delays
   const getAnimationDelay = () => {
-    return 0.2 + (index * 0.1);
+    return 0.1 + (index * 0.05); // Faster stagger for snappier feel
   };
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30, scale: 0.9 }}
+      initial={{ opacity: 0, y: 20, scale: 0.98 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{
-        duration: 0.6,
+        duration: 0.8,
         delay: getAnimationDelay(),
-        ease: [0.16, 1, 0.3, 1]
+        ease: TRANSITION_EASE as any
       }}
+      className="h-full"
     >
-      <Link to={`/project/${id}`} className="group block">
-        <motion.div
-          layoutId={disableSharedTransition ? undefined : `project-${id}`}
-          className={`relative overflow-hidden bg-card gallery-card rounded-2xl aspect-[4/3] ${projectStyles.borderGlow} hover:${projectStyles.borderGlow.replace('0.3', '0.6')} smooth-transition`}
-          whileHover={{
-            scale: 1.02,
-            transition: { duration: 0.3, ease: "easeOut" }
-          }}
-          whileTap={{ scale: 0.98 }}
-        >
-          <img
-            src={thumbnailSrc}
-            alt={title}
-            className="w-full h-full object-cover smooth-transition group-hover:scale-110"
-            loading="lazy"
-          />
+      <Link to={`/project/${id}`} className="group block h-full relative">
+        <div className={`relative overflow-hidden bg-card gallery-card rounded-2xl aspect-[4/3] ${projectStyles.borderGlow} hover:${projectStyles.borderGlow.replace('0.3', '0.6')} smooth-transition h-full w-full transition-all duration-500 ease-out`}>
 
-          {/* Dynamic gradient overlay based on project type */}
+          {/* Shared Image Layer */}
+          <motion.div
+            layoutId={disableSharedTransition ? undefined : `project-${id}`}
+            className="absolute inset-0 w-full h-full"
+            transition={{
+              duration: 0.8,
+              ease: TRANSITION_EASE as any
+            }}
+          >
+            <img
+              src={thumbnailSrc}
+              alt={title}
+              className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-105"
+              loading="lazy"
+            />
+            {/* Overlay inside the shared element so it morphs with the image?
+                Actually, better to keep overlay separate if we want it to fade out.
+                But if we want the "darkening" to persist, it should be here.
+                Let's keep the gradient overlay separate so it fades out, revealing the clean image.
+            */}
+          </motion.div>
+
+          {/* Dynamic gradient overlay - Fades out on exit */}
           <div
-            className="absolute inset-0 opacity-60 group-hover:opacity-80 smooth-transition"
+            className="absolute inset-0 opacity-60 group-hover:opacity-70 transition-opacity duration-500 pointer-events-none"
             style={{
               background: `linear-gradient(to top, hsl(0 0% 6.7%) 0%, hsl(0 0% 6.7% / 0.8) 30%, transparent 70%)`
             }}
           />
 
-
-          <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-            <div>
-              <p className="text-sm text-muted-foreground mb-2">{year} · {category}</p>
-              <h3 className={`text-2xl md:text-3xl font-display tracking-tight group-hover:${projectStyles.accentColor} smooth-transition`}>
+          {/* Content - Fades out on exit */}
+          <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8 pointer-events-none">
+            <div className="transform transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:-translate-y-1">
+              <p className="text-sm text-muted-foreground mb-2 opacity-80 group-hover:opacity-100 transition-opacity">{year} · {category}</p>
+              <h3 className={`text-2xl md:text-3xl font-display tracking-tight group-hover:${projectStyles.accentColor} transition-colors duration-300`}>
                 {title}
               </h3>
             </div>
@@ -128,12 +138,12 @@ const ProjectCard = ({
 
           {/* Enhanced glow effect */}
           <div
-            className="absolute inset-0 opacity-0 group-hover:opacity-100 smooth-transition pointer-events-none rounded-2xl"
+            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl"
             style={{
               boxShadow: `inset 0 0 40px ${projectStyles.glowColor}20, 0 0 60px ${projectStyles.glowColor}30`
             }}
           />
-        </motion.div>
+        </div>
       </Link>
     </motion.div>
   );

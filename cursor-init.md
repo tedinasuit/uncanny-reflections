@@ -35,6 +35,7 @@ This is a modern, single-page portfolio website for Lars Hoeijmans, showcasing h
 #### Components (`src/components/`)
 - **Navigation.tsx**: Fixed header navigation with animated mobile menu
 - **Hero.tsx**: Large typography hero section with background image
+- **Preloader.tsx**: Full-screen loading overlay that waits for critical assets (Hero video/image)
 - **ProjectCard.tsx**: Grid item for project showcase with hover effects
 - **UI Components**: Complete shadcn/ui component library (buttons, forms, dialogs, etc.)
 
@@ -87,6 +88,7 @@ This is a modern, single-page portfolio website for Lars Hoeijmans, showcasing h
 - **Contact Integration**: Direct email and social media links throughout the site
 - **Route-based Animations**: AnimatePresence for page transitions
 - **Performance**: Lazy loading through React Router and optimized animations
+- **Asset Preloading**: Initial load blocked by `Preloader` until critical assets (Hero background, Hero video, Project thumbnails) are ready. Ensures smooth reveal without layout shift.
 
 ## Project Goals
 The website serves as a professional showcase for Lars Hoeijmans' work in:
