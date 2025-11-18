@@ -54,6 +54,15 @@ const Index = () => {
               thumbnailImage={project.thumbnailImage}
               index={index}
               disableSharedTransition={returningFromProject}
+              projectType={
+                project.id === 'flowspace' ? 'productivity' :
+                project.id === 'blendspace-studio' ? 'ai-creative' :
+                project.id === 'michiel-de-ruyter' ? 'ai-3d' :
+                project.id === 'lineup-creator' ? 'sports-app' :
+                project.id === 'next-nature-museum' ? 'museum' :
+                project.id === 'ddw' ? 'installation' :
+                'productivity'
+              }
             />
           ))}
         </div>

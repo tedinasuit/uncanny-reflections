@@ -80,6 +80,7 @@ All colors MUST be HSL.
     box-shadow: 0 0 40px hsl(var(--gallery-glow) / 0.3);
   }
 
+
   .smooth-transition {
     transition: var(--transition-smooth);
   }

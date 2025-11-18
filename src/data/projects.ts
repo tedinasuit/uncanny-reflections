@@ -6,27 +6,29 @@ import project4 from "@/assets/project-4.jpg";
 import project5 from "@/assets/project-5.jpg";
 import project6 from "@/assets/project-6.jpg";
 import project7 from "@/assets/project-7.jpg";
-import blendspace from "@/assets/blendspace.png";
-import blendspaceThumb from "@/assets/blendspace-thumb.png";
+import blendspace from "@/assets/blendspace.webp";
+import blendspaceThumb from "@/assets/blendspace-thumb.webp";
 import blendspaceExample1 from "@/assets/blendspace-example1.jpg";
-import blendspaceExample2 from "@/assets/blendspace-example2.png";
-import blendspaceExample3 from "@/assets/blendspace-example3.jpg";
-import flowspace from "@/assets/flowspace.png";
-import flowspaceThumb from "@/assets/flowspace-thumb.png";
-import flowspaceKanban from "@/assets/flowspace-kanban.png";
-import flowspaceYourDay from "@/assets/flowspace-yourday.png";
+import blendspaceExample2 from "@/assets/blendspace-example2.webp";
+import flowspace from "@/assets/flowspace.webp";
+import flowspaceThumb from "@/assets/flowspace-thumb.webp";
+import flowspaceKanban from "@/assets/flowspace-kanban.webp";
+import flowspaceYourDay from "@/assets/flowspace-yourday.webp";
 import ddwThumb from "@/assets/ddw-thumb.jpeg";
 import ddw from "@/assets/ddw.jpeg";
-import ddwExample1 from "@/assets/ddw-example1.png";
-import ddwExample2 from "@/assets/ddw-example2.png";
-import ddwExpo1 from "@/assets/ddw-expo-1.png";
-import ddwExpo2 from "@/assets/ddw-expo-2.png";
-import ddwExpo3 from "@/assets/ddw-expo-3.png";
-import michiel from "@/assets/michiel.png";
-import michielThumb from "@/assets/michiel-thumb.png";
-import michielExample1 from "@/assets/michiel-example1.png";
-import nextnature from "@/assets/nextnature.png";
-import nextnatureThumb from "@/assets/nextnature-thumb.png";
+import ddwExample1 from "@/assets/ddw-example1.webp";
+import ddwExample2 from "@/assets/ddw-example2.webp";
+import ddwExpo1 from "@/assets/ddw-expo-1.webp";
+import ddwExpo2 from "@/assets/ddw-expo-2.webp";
+import ddwExpo3 from "@/assets/ddw-expo-3.webp";
+import ddwDrawing from "@/assets/ddw-drawing.webp";
+import ddwConcept from "@/assets/ddw-concept.webp";
+import ddwConcept2 from "@/assets/ddw-concept2.webp";
+import michiel from "@/assets/michiel.webp";
+import michielThumb from "@/assets/michiel-thumb.webp";
+import michielExample1 from "@/assets/michiel-example1.webp";
+import nextnature from "@/assets/nextnature.webp";
+import nextnatureThumb from "@/assets/nextnature-thumb.webp";
 import lineup from "@/assets/lineup.jpeg";
 import lineupThumb from "@/assets/lineup-thumb.jpg";
 import lineupExample1 from "@/assets/lineup-example1.jpeg";
@@ -87,7 +89,7 @@ export const projects: Project[] = [
       },
       {
         type: "paragraph",
-        text: "A small follow-up study suggested it works as intended. Most participants reported thinking more about human uniqueness (80%) and many felt more confident about their own qualities (60%). While it’s a small sample (n=5), it matched the intended effect."
+        text: "A small follow-up study suggested it works as intended. Most participants reported thinking more about human uniqueness (80%) and many felt more confident about their own qualities (60%)."
       },
       {
         type: "pullQuote",
@@ -311,14 +313,6 @@ export const projects: Project[] = [
         text: "A dedicated workspace swaps football kits on player photos. Search for or upload player imagery, choose official club variants, and render new kits instantly. This is useful for fast merch concepts and fan engagement."
       },
       {
-        type: "gallery",
-        aspectRatio: 1.5,
-        caption: "Examples of kit swaps across major leagues, perfect for fan engagement.",
-        items: [
-          { src: blendspaceExample3, alt: "Kit Swapper output examples" }
-        ]
-      },
-      {
         type: "callout",
         tone: "primary",
         title: "Try Blendspace",
@@ -431,6 +425,16 @@ export const projects: Project[] = [
       {
         type: "paragraph",
         text: "To make it responsive, an ultrasonic sensor measured visitor distance. A small Node.js bridge relayed data to the WebXR app. The NextBot waved at about 40 cm and danced at about 10 cm. Gemini helped accelerate the Node plumbing under time pressure."
+      },
+      {
+        type: "gallery",
+        aspectRatio: 1.5,
+        caption: "From initial sketch to final 3D model: showing the design evolution of the NextBot.",
+        items: [
+          { src: ddwDrawing, alt: "Initial NextBot sketch" },
+          { src: ddwConcept, alt: "NextBot concept design" },
+          { src: ddwConcept2, alt: "NextBot final 3D model" }
+        ]
       },
       { type: "heading", level: 2, text: "Exhibition & outcome" },
       {
