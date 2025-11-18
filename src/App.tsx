@@ -75,16 +75,43 @@ const AppContent = () => {
         criticalPromises.push(preloadVideo(headVideoWebM));
       }
 
-      // Project thumbnails AND detail images
-      const projectImages = projects
-        .flatMap((p) => [p.thumbnailImage, p.image, p.detailImage])
-        .filter(Boolean) as string[];
+      // Collect ALL assets from projects
+      const allProjectAssets = new Set<string>();
+      const allProjectVideos = new Set<string>();
 
-      // Deduplicate
-      const uniqueImages = [...new Set(projectImages)];
+      projects.forEach((project) => {
+        // 1. Main project images
+        if (project.image) allProjectAssets.add(project.image);
+        if (project.thumbnailImage) allProjectAssets.add(project.thumbnailImage);
+        if (project.detailImage) allProjectAssets.add(project.detailImage);
 
-      uniqueImages.forEach((src) => {
+        // 2. Content blocks
+        if (project.blocks) {
+          project.blocks.forEach((block) => {
+            if (block.type === "media") {
+              if (block.mediaType === "image") {
+                allProjectAssets.add(block.src);
+              } else if (block.mediaType === "video") {
+                allProjectVideos.add(block.src);
+                if (block.posterSrc) allProjectAssets.add(block.posterSrc);
+              }
+            } else if (block.type === "gallery") {
+              block.items.forEach((item) => {
+                allProjectAssets.add(item.src);
+              });
+            }
+          });
+        }
+      });
+
+      // Preload all images
+      allProjectAssets.forEach((src) => {
         criticalPromises.push(preloadImage(src));
+      });
+
+      // Preload all videos
+      allProjectVideos.forEach((src) => {
+        criticalPromises.push(preloadVideo(src));
       });
 
       // Wait for all assets to load
