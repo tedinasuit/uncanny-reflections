@@ -27,6 +27,8 @@ import ddwConcept2 from "@/assets/ddw-concept2.webp";
 import michiel from "@/assets/michiel.webp";
 import michielThumb from "@/assets/michiel-thumb.webp";
 import michielExample1 from "@/assets/michiel-example1.webp";
+import michielVideo from "@/assets/Michiel de Ruyter.mp4";
+import michielVideoThumb from "@/assets/michiel-video.jpg";
 import nextnature from "@/assets/nextnature.webp";
 import nextnatureThumb from "@/assets/nextnature-thumb.webp";
 import lineup from "@/assets/lineup.jpeg";
@@ -189,7 +191,7 @@ export const projects: Project[] = [
       { type: "heading", level: 2, text: "Behind the scenes" },
       {
         type: "paragraph",
-        text: "Built with React 18 and TypeScript, styled with Tailwind and accessible components. Supabase powers authentication and data with row-level security and optimistic updates for a snappy feel. The assistant uses a SOTA AI-model with retrieval so help is grounded in your documents. It ships as a PWA for installability and offline use, with subtle motion via Framer Motion."
+        text: "Built with React 18 and TypeScript, styled with Tailwind and accessible components. Postgres powers authentication and data with row-level security and optimistic updates for a snappy feel. The assistant uses a SOTA AI-model with retrieval so help is grounded in your documents. It ships as a PWA for installability and offline use, with subtle motion via Framer Motion."
       },
     ]
   },
@@ -337,18 +339,19 @@ export const projects: Project[] = [
         type: "paragraph",
         text: "I wanted to see if a historical figure could feel present, not like a chatbot, with real-time speech and a respectful Dutch persona. The goal was a quiet sense of being there with him, not a gimmick."
       },
+      {
+        type: "media",
+        mediaType: "video",
+        src: michielVideo,
+        posterSrc: michielVideoThumb,
+        alt: "Michiel de Ruyter interactive video",
+        size: "lg",
+        aspectRatio: 1.6
+      },
       { type: "heading", level: 2, text: "The experience" },
       {
         type: "paragraph",
         text: "You meet Michiel de Ruyter aboard a stormy ship. You speak naturally, and he responds instantly in Dutch with a dignified tone. Lighting, motion, and pacing are tuned to keep eye contact and presence without breaking the scene."
-      },
-      {
-        type: "gallery",
-        aspectRatio: 1.6,
-        caption: "Screenshot of the interactive conversation experience with Michiel de Ruyter.",
-        items: [
-          { src: michielExample1, alt: "Michiel de Ruyter virtual human experience" }
-        ]
       },
       {
         type: "paragraph",

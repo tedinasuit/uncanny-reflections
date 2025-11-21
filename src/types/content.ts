@@ -3,19 +3,25 @@ export type ContentBlock =
   | { type: "paragraph"; text: string }
   | { type: "pullQuote"; text: string; attribution?: string }
   | {
-      type: "media";
-      mediaType: "image" | "video";
-      src: string;
-      alt?: string;
-      caption?: string;
-      fullBleed?: boolean;
-      posterSrc?: string;
-      aspectRatio?: number;
-      size?: "sm" | "md" | "lg";
-    }
-  | { type: "gallery"; items: { src: string; alt?: string }[]; caption?: string; aspectRatio?: number }
+    type: "media";
+    mediaType: "image" | "video";
+    src: string;
+    alt?: string;
+    caption?: string;
+    fullBleed?: boolean;
+    posterSrc?: string;
+    aspectRatio?: number;
+    size?: "sm" | "md" | "lg";
+  }
+  | { type: "gallery"; items: GalleryItem[]; caption?: string; aspectRatio?: number }
   | { type: "callout"; tone: "primary" | "neutral" | "warning"; title?: string; body: string }
   | { type: "statRow"; items: { label: string; value: string }[] }
   | { type: "divider" };
 
-
+export interface GalleryItem {
+  src: string;
+  alt: string;
+  caption?: string;
+  type?: 'image' | 'video';
+  poster?: string;
+}

@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { Mail, Linkedin } from "lucide-react";
+import userImage from "@/assets/aboutme.png";
 
 const About = () => {
   return (
@@ -20,24 +21,33 @@ const About = () => {
             </h1>
 
             <div className="space-y-8 text-lg text-muted-foreground leading-relaxed">
-              <p>
-                I'm Lars Hoeijmans, a 24-year-old creator who grew up with a disposable camera in one hand and a jailbroken iPhone in the other.
-              </p>
-
-                <p>
-                  When I was little, my grandparents took me to aquariums and beaches, teaching me to notice the small things—how light moves through water, how something can feel alive. At the same time, I was the kid flashing custom ROMs on Android phones and figuring out how to make technology do things it wasn't supposed to.
-                </p>
-
-              <p>
-                Those two worlds—nature and computers—never felt separate. They both taught me to look closer, to understand how things work, and to care about the details that make something feel right.
-              </p>
+              <div className="relative float-right ml-8 mb-8 w-64 md:w-80 group">
+                <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-xl" />
+                <img
+                  src={userImage}
+                  alt="Lars Hoeijmans"
+                  className="relative w-full h-auto rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-500 ease-out transform group-hover:scale-[1.02] shadow-2xl"
+                />
+              </div>
 
               <p>
-                Now I build experiences that sit between the physical and digital. I prototype fast, test early, and move between concept, design, and code depending on what the project needs. I'm drawn to work that creates presence, not just spectacle—things that help people think or see differently.
+                I'm Lars. I'm 24. I've always been chasing the feeling of seeing something for the first time.
               </p>
 
               <p>
-                I still want to photograph the northern lights and explore wild landscapes. But I also want to keep making things that bridge the tangible and the digital, honoring both worlds I grew up loving.
+                When I was a kid, I looked for it in nature. I’d spend hours at aquariums or on the beach, just waiting to spot something I hadn't seen before. It was all about discovery.
+              </p>
+
+              <p>
+                Then I found computers. I realized I didn't have to wait to find new things. I could just make them. That’s what got me into jailbreaking iPhones and messing with Android ROMs. I wanted to unlock parts of the technology that were hidden.
+              </p>
+
+              <p>
+                That’s still what drives me. I want to build digital experiences that feel genuinely new. I’m not interested in just making things work. I want to make things that feel different than what you’re used to.
+              </p>
+
+              <p>
+                I still love exploring the real world. I still dream of finally seeing the northern lights with my own eyes. But mostly, I’m looking for that next new idea that bridges the gap between the screen and reality.
               </p>
             </div>
 

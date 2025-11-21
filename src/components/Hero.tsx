@@ -3,6 +3,7 @@ import { useState } from "react";
 import heroBg from "@/assets/hero-bg.jpg";
 import headVideoMOV from "@/assets/head-pink.mov";
 import headVideoWebM from "@/assets/head-pink.webm";
+import { Typewriter } from "@/components/ui/Typewriter";
 
 const Hero = () => {
   const [videoError, setVideoError] = useState(false);
@@ -40,7 +41,8 @@ const Hero = () => {
                 transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 className="text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 text-muted-foreground"
               >
-                Creating digital experiences that explore how humans and machines see, move, and feel.
+                Creating digital experiences that explore how humans and machines<br />
+                <Typewriter words={["see", "move", "feel", "experience"]} className="text-foreground font-medium" />
               </motion.p>
             </div>
 

@@ -63,8 +63,8 @@ const MediaFigure = ({
     size === "sm"
       ? "max-w-[240px] md:max-w-[280px]"
       : size === "md"
-      ? "max-w-[640px]"
-      : "max-w-none";
+        ? "max-w-[640px]"
+        : "max-w-none";
 
   return (
     <figure className={`my-10 ${fullBleed ? "mx-[-6vw]" : ""}`}>
@@ -72,42 +72,40 @@ const MediaFigure = ({
         {aspectRatio ? (
           <AspectRatio ratio={aspectRatio}>
             {mediaType === "video" ? (
+              <LazyVideo
+                src={src}
+                poster={posterSrc || ""}
+                alt={alt || ""}
+                className={`w-full h-full ${fullBleed ? "rounded-none" : "rounded-md"}`}
+              />
+            ) : (
               <button
                 type="button"
                 onClick={() => {
                   setIsOpen(true);
                   requestAnimationFrame(() => setOverlayVisible(true));
                 }}
-                className="group block w-full focus:outline-none"
-                aria-label="Expand video"
+                className="group block w-full h-full focus:outline-none"
+                aria-label="Expand image"
               >
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
+                <img
+                  src={src}
+                  alt={alt || ""}
                   className={`w-full h-full ${fullBleed ? "rounded-none" : "rounded-md"} object-contain`}
-                  aria-label={alt || ""}
-                  role="img"
-                  controls={false}
-                  poster={posterSrc}
-                  onContextMenu={(e) => e.preventDefault()}
-                  draggable={false}
-                >
-                  <source src={src} type="video/mp4" />
-                </video>
+                />
               </button>
-            ) : (
-              <img
-                src={src}
-                alt={alt || ""}
-                className={`w-full h-full ${fullBleed ? "rounded-none" : "rounded-md"} object-contain`}
-              />
             )}
           </AspectRatio>
         ) : (
           <>
             {mediaType === "video" ? (
+              <LazyVideo
+                src={src}
+                poster={posterSrc || ""}
+                alt={alt || ""}
+                className={`w-full ${fullBleed ? "rounded-none" : "rounded-md"}`}
+              />
+            ) : (
               <button
                 type="button"
                 onClick={() => {
@@ -115,39 +113,22 @@ const MediaFigure = ({
                   requestAnimationFrame(() => setOverlayVisible(true));
                 }}
                 className="group block w-full focus:outline-none"
-                aria-label="Expand video"
+                aria-label="Expand image"
               >
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
+                <img
+                  src={src}
+                  alt={alt || ""}
                   className={`w-full ${fullBleed ? "rounded-none" : "rounded-md"} object-contain`}
-                  aria-label={alt || ""}
-                  role="img"
-                  controls={false}
-                  poster={posterSrc}
-                  onContextMenu={(e) => e.preventDefault()}
-                  draggable={false}
-                >
-                  <source src={src} type="video/mp4" />
-                </video>
+                />
               </button>
-            ) : (
-              <img
-                src={src}
-                alt={alt || ""}
-                className={`w-full ${fullBleed ? "rounded-none" : "rounded-md"} object-contain`}
-              />
             )}
           </>
         )}
       </div>
       {isOpen && (
         <div
-          className={`fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4 transition-opacity duration-150 ${
-            overlayVisible ? "opacity-100" : "opacity-0 pointer-events-none"
-          }`}
+          className={`fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4 transition-opacity duration-150 ${overlayVisible ? "opacity-100" : "opacity-0 pointer-events-none"
+            }`}
           onClick={() => {
             setOverlayVisible(false);
             window.setTimeout(() => setIsOpen(false), 150);
@@ -177,12 +158,14 @@ const MediaFigure = ({
   );
 };
 
+import LazyVideo from "@/components/LazyVideo";
+
 const GalleryMasonry = ({
   items,
   caption,
   aspectRatio,
 }: {
-  items: { src: string; alt?: string }[];
+  items: { src: string; alt?: string; type?: 'image' | 'video'; poster?: string }[];
   caption?: string;
   aspectRatio?: number;
 }) => {
@@ -193,33 +176,42 @@ const GalleryMasonry = ({
     <figure className="my-10">
       <div className="grid grid-cols-3 gap-3">
         {items.map((it, idx) => (
-          <button
-            key={idx}
-            type="button"
-            onClick={() => {
-              setActiveIndex(idx);
-              requestAnimationFrame(() => setOverlayVisible(true));
-            }}
-            className="group block w-full focus:outline-none"
-            aria-label="Expand image"
-          >
+          <div key={idx} className="block w-full">
             <AspectRatio ratio={aspectRatio || 1}>
-              <img
-                src={it.src}
-                alt={it.alt || ""}
-                className="w-full h-full rounded-md object-cover transition-transform duration-150 group-hover:scale-[1.01]"
-              />
+              {it.type === 'video' ? (
+                <LazyVideo
+                  src={it.src}
+                  poster={it.poster || ""}
+                  alt={it.alt || ""}
+                  className="w-full h-full rounded-md"
+                />
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveIndex(idx);
+                    requestAnimationFrame(() => setOverlayVisible(true));
+                  }}
+                  className="group block w-full h-full focus:outline-none"
+                  aria-label="Expand image"
+                >
+                  <img
+                    src={it.src}
+                    alt={it.alt || ""}
+                    className="w-full h-full rounded-md object-cover transition-transform duration-150 group-hover:scale-[1.01]"
+                  />
+                </button>
+              )}
             </AspectRatio>
-          </button>
+          </div>
         ))}
       </div>
       {caption && <figcaption className="mt-2 text-sm text-muted-foreground">{caption}</figcaption>}
 
-      {activeIndex !== null && (
+      {activeIndex !== null && items[activeIndex].type !== 'video' && (
         <div
-          className={`fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4 transition-opacity duration-150 ${
-            overlayVisible ? "opacity-100" : "opacity-0 pointer-events-none"
-          }`}
+          className={`fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4 transition-opacity duration-150 ${overlayVisible ? "opacity-100" : "opacity-0 pointer-events-none"
+            }`}
           onClick={() => {
             setOverlayVisible(false);
             window.setTimeout(() => setActiveIndex(null), 150);
