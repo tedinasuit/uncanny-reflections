@@ -21,7 +21,7 @@ const About = () => {
             </h1>
 
             <div className="space-y-8 text-lg text-muted-foreground leading-relaxed">
-              <div className="relative float-right ml-8 mb-8 w-64 md:w-80 group">
+              <div className="relative float-right ml-8 mb-8 w-64 md:w-80 group hidden md:block">
                 <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-xl" />
                 <img
                   src={userImage}
@@ -49,6 +49,16 @@ const About = () => {
               <p>
                 I still love exploring the real world. I still dream of finally seeing the northern lights with my own eyes. But mostly, I’m looking for that next new idea that bridges the gap between the screen and reality.
               </p>
+
+              {/* Mobile Image - Centered at bottom */}
+              <div className="relative w-64 mx-auto mt-12 group block md:hidden">
+                <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-xl" />
+                <img
+                  src={userImage}
+                  alt="Lars Hoeijmans"
+                  className="relative w-full h-auto rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-500 ease-out transform group-hover:scale-[1.02] shadow-2xl"
+                />
+              </div>
             </div>
 
             <div className="mt-16 pt-16 border-t border-border">

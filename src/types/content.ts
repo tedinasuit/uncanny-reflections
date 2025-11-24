@@ -24,4 +24,5 @@ export interface GalleryItem {
   caption?: string;
   type?: 'image' | 'video';
   poster?: string;
+  highlight?: boolean;
 }
