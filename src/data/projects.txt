@@ -9,7 +9,7 @@ import project7 from "@/assets/project-7.jpg";
 import blendspace from "@/assets/blendspace.webp";
 import blendspaceThumb from "@/assets/blendspace-thumb.webp";
 import blendspaceExample1 from "@/assets/blendspace-example1.jpg";
-import blendspaceExample2 from "@/assets/blendspace-example2.webp";
+import blendspaceExample2 from "@/assets/blendspace-dashboard.webp";
 import flowspace from "@/assets/flowspace.webp";
 import flowspaceThumb from "@/assets/flowspace-thumb.webp";
 import flowspaceKanban from "@/assets/flowspace-kanban.webp";

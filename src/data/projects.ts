@@ -8,8 +8,9 @@ import project6 from "@/assets/project-6.jpg";
 import project7 from "@/assets/project-7.jpg";
 import blendspace from "@/assets/blendspace.webp";
 import blendspaceThumb from "@/assets/blendspace-thumb.webp";
+import blendspaceKit from "@/assets/Blendspace-Kit.jpg";
 import blendspaceExample1 from "@/assets/blendspace-example1.jpg";
-import blendspaceExample2 from "@/assets/blendspace-example2.webp";
+import blendspaceExample2 from "@/assets/blendspace-dashboard.webp";
 import flowspace from "@/assets/flowspace.webp";
 import flowspaceThumb from "@/assets/flowspace-thumb.webp";
 import flowspaceKanban from "@/assets/flowspace-kanban.webp";
@@ -349,6 +350,14 @@ export const projects: Project[] = [
       {
         type: "paragraph",
         text: "A dedicated workspace swaps football kits on player photos. Search for or upload player imagery, choose official club variants, and render new kits instantly. This is useful for fast merch concepts and fan engagement."
+      },
+      {
+        type: "media",
+        mediaType: "image",
+        src: blendspaceKit,
+        alt: "Blendspace Kit Swapper example",
+        caption: "Instantly swap kits on player photos for fast concepts.",
+        fullBleed: true
       },
       {
         type: "callout",

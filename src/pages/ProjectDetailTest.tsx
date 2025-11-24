@@ -235,7 +235,7 @@ const MediaBlock = ({ block, index }: { block: any, index: number }) => {
                 className={cn(
                     "relative overflow-hidden rounded-lg flex items-center justify-center",
                     block.fullBleed
-                        ? "w-full aspect-[9/16] md:aspect-[16/9]"
+                        ? "w-full h-auto md:aspect-[16/9]"
                         : "w-full max-h-[80vh]"
                 )}
             >
@@ -250,7 +250,7 @@ const MediaBlock = ({ block, index }: { block: any, index: number }) => {
                             controls
                             className={cn(
                                 block.fullBleed
-                                    ? "w-full h-full object-cover"
+                                    ? "w-full h-auto md:h-full md:object-cover"
                                     : "max-w-full max-h-[80vh] object-contain bg-black mx-auto"
                             )}
                         />
@@ -260,7 +260,7 @@ const MediaBlock = ({ block, index }: { block: any, index: number }) => {
                             alt={block.alt}
                             className={cn(
                                 block.fullBleed
-                                    ? "w-full h-full object-cover"
+                                    ? "w-full h-auto md:h-full md:object-cover"
                                     : "max-w-full max-h-[80vh] object-contain mx-auto"
                             )}
                         />
@@ -359,7 +359,7 @@ const BlockRenderer = ({ block, index }: { block: any, index: number }) => {
                                     className={cn(
                                         "relative group",
                                         item.highlight
-                                            ? "w-full aspect-[9/16] md:aspect-[16/9]"
+                                            ? "w-full h-auto md:aspect-[16/9]"
                                             : "h-64 md:h-96"
                                     )}
                                 >
@@ -369,7 +369,7 @@ const BlockRenderer = ({ block, index }: { block: any, index: number }) => {
                                         className={cn(
                                             "w-full h-full rounded-lg bg-white/5",
                                             item.highlight
-                                                ? "object-cover"
+                                                ? "w-full h-auto md:object-cover"
                                                 : "w-auto object-contain"
                                         )}
                                     />
