@@ -135,21 +135,29 @@ const MediaFigure = ({
           }}
         >
           <div className="relative" onClick={(e) => e.stopPropagation()}>
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="max-h-[85vh] max-w-[90vw] rounded-lg object-contain shadow-2xl"
-              aria-label={alt || ""}
-              role="img"
-              controls={false}
-              poster={posterSrc}
-              onContextMenu={(e) => e.preventDefault()}
-              draggable={false}
-            >
-              <source src={src} type="video/mp4" />
-            </video>
+            {mediaType === 'video' ? (
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="max-h-[85vh] max-w-[90vw] rounded-lg object-contain shadow-2xl"
+                aria-label={alt || ""}
+                role="img"
+                controls={false}
+                poster={posterSrc}
+                onContextMenu={(e) => e.preventDefault()}
+                draggable={false}
+              >
+                <source src={src} type="video/mp4" />
+              </video>
+            ) : (
+              <img
+                src={src}
+                alt={alt || ""}
+                className="max-h-[85vh] max-w-[90vw] rounded-lg object-contain shadow-2xl"
+              />
+            )}
           </div>
         </div>
       )}
@@ -255,6 +263,44 @@ const StatRow = ({ items }: { items: { label: string; value: string }[] }) => (
 
 const SectionDivider = () => <div className="my-12 h-[2px] bg-gradient-to-r from-primary/0 via-primary/60 to-primary/0" />;
 
+const SplitSection = ({
+  text,
+  media,
+  reverse,
+}: {
+  text: string;
+  media: {
+    mediaType: "image" | "video";
+    src: string;
+    alt?: string;
+    caption?: string;
+    posterSrc?: string;
+  };
+  reverse?: boolean;
+}) => {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center my-24">
+      <div className={reverse ? "md:order-2" : "md:order-1"}>
+        <p className="text-lg md:text-xl leading-relaxed text-muted-foreground font-medium">
+          {text}
+        </p>
+      </div>
+
+      <div className={reverse ? "md:order-1" : "md:order-2"}>
+        <MediaFigure
+          mediaType={media.mediaType}
+          src={media.src}
+          alt={media.alt}
+          caption={media.caption}
+          posterSrc={media.posterSrc}
+          // Reset margins since we are in a grid
+          fullBleed={false}
+        />
+      </div>
+    </div>
+  );
+};
+
 const ArticleContentRenderer = ({ blocks }: ArticleContentRendererProps) => {
   return (
     <div>
@@ -288,6 +334,15 @@ const ArticleContentRenderer = ({ blocks }: ArticleContentRendererProps) => {
             return <StatRow key={idx} items={block.items} />;
           case "divider":
             return <SectionDivider key={idx} />;
+          case "split":
+            return (
+              <SplitSection
+                key={idx}
+                text={block.text}
+                media={block.media}
+                reverse={block.reverse}
+              />
+            );
           default:
             return null;
         }

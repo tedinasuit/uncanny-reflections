@@ -57,6 +57,8 @@ export interface Project {
   richSections?: { heading: string; body: string }[];
   // Optional longform article content
   blocks?: ContentBlock[];
+  // Primary accent color for ambient backgrounds (e.g., "#3b82f6")
+  accentColor?: string;
 }
 
 export const projects: Project[] = [
@@ -71,20 +73,14 @@ export const projects: Project[] = [
     fullDescription: "Constructed Mirror is an immersive installation that challenges our understanding of identity and perception through the lens of artificial intelligence. The piece uses real-time AI processing to create a dialogue between human reflection and machine interpretation, asking viewers to confront how they are seen by themselves and by algorithmic systems.",
     technologies: ["Computer Vision", "Machine Learning", "Real-time Processing", "Interactive Installation"],
     role: "Concept, Design & Solo Developer",
+    accentColor: "#4f46e5", // Indigo-600
     blocks: [
       { type: "heading", level: 2, text: "Dutch Design Week" },
       {
         type: "paragraph",
         text: "Dutch Design Week (DDW) is one of the world's leading design events and the largest in Northern Europe. Held annually for nine days in October in Eindhoven, Netherlands, it focuses on the design of the future. The event emphasizes experimentation, innovation, and how design can help shape a positive future and offer solutions to social challenges."
       },
-      {
-        type: "gallery",
-        aspectRatio: 1.5,
-        caption: "The Constructed Mirror booth at Dutch Design Week, showing visitors engaging with the installation.",
-        items: [
-          { src: ddwExample1, alt: "Constructed Mirror installation at Dutch Design Week" }
-        ]
-      },
+
       { type: "heading", level: 2, text: "Why I built it" },
       {
         type: "paragraph",
@@ -104,17 +100,32 @@ export const projects: Project[] = [
         src: ddwExample2,
         alt: "Inside the Constructed Mirror booth",
         caption: "The interior experience where participants encounter their AI-augmented reflection.",
-        fullBleed: true
+        highlight: true,
+        fullBleed: false,
+        size: "sm"
       },
       { type: "divider" },
       { type: "heading", level: 2, text: "The experience" },
       {
-        type: "paragraph",
-        text: "You step into a small, quiet booth and face what looks like a normal mirror. After speaking a few lines for voice sampling, a subtle lag appears. Then the mirror ‘wakes up’ and speaks back in your voice and face, asking a handful of sharp, human questions. It ends without a tidy answer on purpose, so the thinking continues after you leave."
+        type: "split",
+        text: "You step into a small, quiet booth and face what looks like a normal mirror. After speaking a few lines for voice sampling, a subtle lag appears. Then the mirror ‘wakes up’ and speaks back in your voice and face, asking a handful of sharp, human questions. It ends without a tidy answer on purpose, so the thinking continues after you leave.",
+        media: {
+          mediaType: "image",
+          src: ddwExample1,
+          alt: "Constructed Mirror installation",
+          caption: "The booth provided an intimate space for reflection."
+        }
       },
       {
-        type: "paragraph",
-        text: "It’s designed for presence over spectacle, using a slow reveal, personal language (Dutch or English), and precise prompts rather than monologues."
+        type: "split",
+        text: "It’s designed for presence over spectacle, using a slow reveal, personal language (Dutch or English), and precise prompts rather than monologues.",
+        reverse: true,
+        media: {
+          mediaType: "image",
+          src: ddw,
+          alt: "Constructed Mirror reflection",
+          caption: "The mirror reflection, AI-augmented in real-time."
+        }
       },
       { type: "divider" },
       { type: "heading", level: 2, text: "Behind the scenes" },

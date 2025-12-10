@@ -31,23 +31,15 @@ const About = () => {
               </div>
 
               <p>
-                I'm Lars. I'm 24. I've always been chasing the feeling of seeing something for the first time.
+                I’m a creative developer who builds digital experiences that feel genuinely new. My work lives at the intersection of engineering and design, where technical complexity meets intuitive, human interfaces.
               </p>
 
               <p>
-                When I was a kid, I looked for it in nature. I’d spend hours at aquariums or on the beach, just waiting to spot something I hadn't seen before. It was all about discovery.
+                Currently, I'm focused on expanding what’s possible with AI: not just to automate existing tasks, but to create entirely new kinds of interactions. Whether it’s a productivity platform that feels like a quiet workspace or an installation that mirrors your own identity, I want to build things that leave a lasting impression.
               </p>
 
               <p>
-                Then I found computers. I realized I didn't have to wait to find new things. I could just make them. That’s what got me into jailbreaking iPhones and messing with Android ROMs. I wanted to unlock parts of the technology that were hidden.
-              </p>
-
-              <p>
-                That’s still what drives me. I want to build digital experiences that feel genuinely new. I’m not interested in just making things work. I want to make things that feel different than what you’re used to.
-              </p>
-
-              <p>
-                I still love exploring the real world. I still dream of finally seeing the northern lights with my own eyes. But mostly, I’m looking for that next new idea that bridges the gap between the screen and reality.
+                I’m looking for the next opportunity to build ambitious products with people who value bold ideas.
               </p>
 
               {/* Mobile Image - Centered at bottom */}

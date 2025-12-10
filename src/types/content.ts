@@ -9,6 +9,7 @@ export type ContentBlock =
     alt?: string;
     caption?: string;
     fullBleed?: boolean;
+    highlight?: boolean;
     posterSrc?: string;
     aspectRatio?: number;
     size?: "sm" | "md" | "lg";
@@ -16,6 +17,19 @@ export type ContentBlock =
   | { type: "gallery"; items: GalleryItem[]; caption?: string; aspectRatio?: number }
   | { type: "callout"; tone: "primary" | "neutral" | "warning"; title?: string; body: string }
   | { type: "statRow"; items: { label: string; value: string }[] }
+  | {
+    type: "split";
+    text: string;
+    media: {
+      mediaType: "image" | "video";
+      src: string;
+      alt?: string;
+      caption?: string;
+      posterSrc?: string;
+    };
+    reverse?: boolean;
+    layout?: "50-50" | "60-40" | "40-60";
+  }
   | { type: "divider" };
 
 export interface GalleryItem {

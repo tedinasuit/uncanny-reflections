@@ -1,10 +1,11 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { motion, useScroll, useTransform, useMotionTemplate } from "framer-motion";
 import { ArrowLeft, ExternalLink } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useMemo } from "react";
 import { projects } from "@/data/projects";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { AmbientBackground } from "@/components/ui/AmbientBackground";
 
 const ProjectDetailTest = () => {
     const { id } = useParams();
@@ -29,7 +30,9 @@ const ProjectDetailTest = () => {
     const nextProject = currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null;
 
     return (
-        <div ref={containerRef} className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
+        <div ref={containerRef} className="min-h-screen bg-black text-white selection:bg-white selection:text-black relative">
+            <AmbientBackground color={project.accentColor} />
+
             {/* Navigation Overlay */}
             <nav className="fixed top-0 left-0 right-0 z-50 p-6 flex justify-between items-center mix-blend-difference">
                 <Button
@@ -49,7 +52,7 @@ const ProjectDetailTest = () => {
             <HeroSection project={project} />
 
             {/* Content Flow */}
-            <div className="relative z-10 bg-black">
+            <div className="relative z-10">
                 <IntroSection project={project} />
 
                 {/* Render Blocks */}
@@ -58,7 +61,7 @@ const ProjectDetailTest = () => {
                 ))}
 
                 {/* Project Navigation */}
-                <div className="py-32 px-6 border-t border-white/10 mt-32">
+                <div className="py-32 px-6 border-t border-white/10 mt-32 backdrop-blur-sm bg-black/20">
                     <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
                         {prevProject && (
                             <motion.div
@@ -69,7 +72,7 @@ const ProjectDetailTest = () => {
                                 <Button
                                     onClick={() => navigate(`/project/${prevProject.id}/test`)}
                                     variant="outline"
-                                    className="w-full h-32 border-white/20 hover:bg-white/10 hover:border-white/40 rounded-2xl group"
+                                    className="w-full h-32 border-white/20 hover:bg-white/10 hover:border-white/40 rounded-2xl group transition-all duration-300 backdrop-blur-md bg-black/20"
                                 >
                                     <div className="flex items-center gap-4 w-full">
                                         <ArrowLeft className="h-6 w-6 transition-transform group-hover:-translate-x-1" />
@@ -91,7 +94,7 @@ const ProjectDetailTest = () => {
                                 <Button
                                     onClick={() => navigate(`/project/${nextProject.id}/test`)}
                                     variant="outline"
-                                    className="w-full h-32 border-white/20 hover:bg-white/10 hover:border-white/40 rounded-2xl group"
+                                    className="w-full h-32 border-white/20 hover:bg-white/10 hover:border-white/40 rounded-2xl group transition-all duration-300 backdrop-blur-md bg-black/20"
                                 >
                                     <div className="flex items-center gap-4 w-full">
                                         <div className="flex-1 text-right">
@@ -118,43 +121,56 @@ const HeroSection = ({ project }: { project: any }) => {
     });
 
     const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-    const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-    const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+    const imageScale = useTransform(scrollYProgress, [0, 1], [1.1, 1]); // Zoom out effect
+    const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+    const textY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+    const textOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
 
     return (
-        <div ref={ref} className="relative h-screen w-full overflow-hidden flex items-center justify-center">
+        <div ref={ref} className="relative h-screen w-full overflow-hidden flex items-end pb-32 md:items-center md:pb-0 justify-center">
             <motion.div
-                style={{ y, scale, opacity }}
+                style={{ y, scale: imageScale, opacity }}
                 className="absolute inset-0 z-0"
             >
                 <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover opacity-60"
+                    className="w-full h-full object-cover opacity-80"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-transparent" />
             </motion.div>
 
-            <div className="relative z-10 text-center px-6 max-w-5xl">
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className="text-lg md:text-xl font-medium tracking-widest uppercase mb-4 text-white/80"
-                >
-                    {project.year} — {project.category}
-                </motion.p>
-                <motion.h1
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                    className="text-6xl md:text-8xl lg:text-9xl font-display font-bold tracking-tighter leading-[0.9] mb-8"
-                >
-                    {project.title.split(" ").map((word: string, i: number) => (
-                        <span key={i} className="block">{word}</span>
-                    ))}
-                </motion.h1>
+            <div className="relative z-10 text-center px-6 max-w-7xl w-full">
+                <motion.div style={{ y: textY, opacity: textOpacity }}>
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                        className="flex flex-col items-center"
+                    >
+                        <span className="inline-block px-3 py-1 rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-xs font-semibold uppercase tracking-wider mb-6 text-white/80">
+                            {project.year} — {project.category}
+                        </span>
+
+                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-tighter leading-[0.9] mb-8 mix-blend-overlay text-transparent bg-clip-text bg-gradient-to-b from-white to-white/50">
+                            {project.title}
+                        </h1>
+
+                        <p className="max-w-xl mx-auto text-lg md:text-2xl text-white/70 font-medium leading-relaxed">
+                            {project.description}
+                        </p>
+                    </motion.div>
+                </motion.div>
             </div>
+
+            <motion.div
+                style={{ opacity: textOpacity }}
+                className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+            >
+                <span className="text-[10px] uppercase tracking-widest text-white/40">Scroll</span>
+                <div className="w-[1px] h-12 bg-gradient-to-b from-white/50 to-transparent" />
+            </motion.div>
         </div>
     );
 };
@@ -168,7 +184,7 @@ const IntroSection = ({ project }: { project: any }) => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-3xl md:text-5xl font-light leading-tight mb-12"
+                        className="text-2xl md:text-4xl font-light leading-tight mb-8"
                     >
                         {project.description}
                     </motion.h2>
@@ -217,7 +233,7 @@ const MediaBlock = ({ block, index }: { block: any, index: number }) => {
     // Opacity fades in smoothly
     const opacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
     // Parallax for full bleed images
-    const y = useTransform(scrollYProgress, [0, 1], ["0%", block.fullBleed ? "-10%" : "0%"]);
+    const y = useTransform(scrollYProgress, [0, 1], ["0%", (block.fullBleed || block.highlight) ? "-10%" : "0%"]);
 
     // Container scale for the "window" effect
     const containerScale = useTransform(scrollYProgress, [0, 0.5], [0.9, 1]);
@@ -227,14 +243,14 @@ const MediaBlock = ({ block, index }: { block: any, index: number }) => {
             ref={ref}
             className={cn(
                 "py-32 px-6", // Increased vertical padding for bigger gap
-                block.fullBleed ? "w-full" : "max-w-screen-xl mx-auto"
+                (block.fullBleed || block.highlight) ? "w-full" : "max-w-screen-xl mx-auto"
             )}
         >
             <motion.div
                 style={{ scale: containerScale, opacity }}
                 className={cn(
                     "relative overflow-hidden rounded-lg flex items-center justify-center",
-                    block.fullBleed
+                    (block.fullBleed || block.highlight)
                         ? "w-full h-auto md:aspect-[16/9]"
                         : "w-full max-h-[80vh]"
                 )}
@@ -249,7 +265,7 @@ const MediaBlock = ({ block, index }: { block: any, index: number }) => {
                             poster={block.posterSrc}
                             controls
                             className={cn(
-                                block.fullBleed
+                                (block.fullBleed || block.highlight)
                                     ? "w-full h-auto md:h-full md:object-cover"
                                     : "max-w-full max-h-[80vh] object-contain bg-black mx-auto"
                             )}
@@ -259,7 +275,7 @@ const MediaBlock = ({ block, index }: { block: any, index: number }) => {
                             src={block.src}
                             alt={block.alt}
                             className={cn(
-                                block.fullBleed
+                                (block.fullBleed || block.highlight)
                                     ? "w-full h-auto md:h-full md:object-cover"
                                     : "max-w-full max-h-[80vh] object-contain mx-auto"
                             )}
@@ -290,7 +306,7 @@ const BlockRenderer = ({ block, index }: { block: any, index: number }) => {
                     transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} // Apple-like ease
                     className="max-w-4xl mx-auto mt-40 mb-12 px-6 text-center"
                 >
-                    <h3 className="text-4xl md:text-7xl font-display font-semibold tracking-tight leading-tight text-white">
+                    <h3 className="text-3xl md:text-5xl font-display font-semibold tracking-tight leading-tight text-white">
                         {block.text}
                     </h3>
                 </motion.div>
@@ -300,13 +316,13 @@ const BlockRenderer = ({ block, index }: { block: any, index: number }) => {
         case "paragraph": {
             return (
                 <motion.div
-                    initial={{ opacity: 0, y: 40 }}
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                    className="max-w-2xl mx-auto mb-20 px-6 text-center"
+                    viewport={{ once: true, margin: "-10%" }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    className="max-w-2xl mx-auto mb-20 px-6"
                 >
-                    <p className="text-xl md:text-2xl leading-relaxed text-neutral-400 font-medium">
+                    <p className="text-lg md:text-xl leading-relaxed text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60 font-medium">
                         {block.text}
                     </p>
                 </motion.div>
@@ -340,50 +356,93 @@ const BlockRenderer = ({ block, index }: { block: any, index: number }) => {
         }
         case "gallery":
             return (
-                <div className="py-12 px-6 overflow-hidden">
-                    <div className="flex flex-wrap justify-center gap-4 md:gap-8">
+                <div className="py-24 px-6 max-w-7xl mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-6 gap-6 md:auto-rows-[300px]">
                         {block.items.map((item: any, i: number) => {
-                            const itemRef = useRef(null);
-                            const { scrollYProgress } = useScroll({
-                                target: itemRef,
-                                offset: ["start end", "end start"]
-                            });
-                            const scale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.9, 1, 1, 0.95]);
-                            const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.5, 1, 1, 0.7]);
+                            // Calculate span based on index or randomness for "Bento" feel
+                            // First item big, others smaller? varied.
+                            // Simple pattern: [Big Square] [Tall] [Tall]
+                            const isLarge = i === 0 || i % 4 === 0;
+                            const colSpan = isLarge ? "md:col-span-4" : "md:col-span-2";
+                            const rowSpan = isLarge ? "md:row-span-2" : "md:row-span-1";
 
                             return (
                                 <motion.div
                                     key={i}
-                                    ref={itemRef}
-                                    style={{ scale, opacity }}
+                                    initial={{ opacity: 0, scale: 0.95 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    viewport={{ once: true, margin: "-50px" }}
+                                    transition={{ duration: 0.6, delay: i * 0.1 }}
                                     className={cn(
-                                        "relative group",
-                                        item.highlight
-                                            ? "w-full h-auto md:aspect-[16/9]"
-                                            : "h-64 md:h-96"
+                                        "relative group overflow-hidden rounded-3xl bg-white/5 border border-white/10",
+                                        colSpan,
+                                        rowSpan,
+                                        "min-h-[300px]"
                                     )}
                                 >
                                     <img
                                         src={item.src}
                                         alt={item.alt}
-                                        className={cn(
-                                            "w-full h-full rounded-lg bg-white/5",
-                                            item.highlight
-                                                ? "w-full h-auto md:object-cover"
-                                                : "w-auto object-contain"
-                                        )}
+                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                     />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                 </motion.div>
                             );
                         })}
                     </div>
                     {block.caption && (
-                        <p className="text-center text-white/50 mt-8 text-sm uppercase tracking-widest">{block.caption}</p>
+                        <p className="text-center text-white/40 mt-12 text-sm uppercase tracking-widest">{block.caption}</p>
                     )}
                 </div>
             );
         case "media":
             return <MediaBlock block={block} index={index} />;
+        case "split": {
+            return (
+                <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-6 py-24">
+                    <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        className={cn(block.reverse ? "md:order-2" : "md:order-1")}
+                    >
+                        <p className="text-lg md:text-xl leading-relaxed text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60 font-medium">
+                            {block.text}
+                        </p>
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        className={cn(
+                            "rounded-lg overflow-hidden relative group",
+                            block.reverse ? "md:order-1" : "md:order-2"
+                        )}
+                    >
+                        {block.media.mediaType === 'video' ? (
+                            <video
+                                src={block.media.src}
+                                poster={block.media.posterSrc}
+                                controls
+                                className="w-full h-auto rounded-lg shadow-2xl"
+                            />
+                        ) : (
+                            <img
+                                src={block.media.src}
+                                alt={block.media.alt}
+                                className="w-full h-auto rounded-lg shadow-2xl transition-transform duration-700 group-hover:scale-105"
+                            />
+                        )}
+                        {block.media.caption && (
+                            <p className="text-left text-white/40 mt-4 text-xs uppercase tracking-widest">{block.media.caption}</p>
+                        )}
+                    </motion.div>
+                </div>
+            );
+        }
         default:
             return null;
     }

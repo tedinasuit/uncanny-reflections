@@ -6,7 +6,6 @@ import { BrowserRouter, Routes, Route, useLocation, useNavigationType } from "re
 import { AnimatePresence } from "framer-motion";
 import Index from "./pages/Index";
 import ProjectDetail from "./pages/ProjectDetail";
-import ProjectDetailTest from "./pages/ProjectDetailTest";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
@@ -27,7 +26,6 @@ const AnimatedRoutes = () => {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Index />} />
         <Route path="/project/:id" element={<ProjectDetail />} />
-        <Route path="/project/:id/test" element={<ProjectDetailTest />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<NotFound />} />
